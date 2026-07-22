@@ -25,7 +25,7 @@ Capybara Lulu is a custom pet pack for the ChatGPT desktop app's Codex experienc
 > [!TIP]
 > **Ready to meet Lulu?** Run `python3 scripts/install.py`, restart the ChatGPT desktop app, then choose **水豚噜噜** in **Settings → Pets**.
 
-The shipped `pet/spritesheet.webp` is an animated 8 × 11 atlas with 20 synchronized image-time phases per native state. Its 1.20-second global loop prevents long frozen holds from the desktop renderer's slower sprite-column clock. Fifteen named visual motions are distributed across the nine real Codex triggers; the static atlas remains available for QA, editing, and reduced-motion fallback.
+The shipped `pet/spritesheet.webp` is an animated 8 × 11 atlas with 20 synchronized image-time phases per native state. Its 1.60-second global loop keeps motion fluid without making Lulu feel hurried. Fifteen named visual motions are distributed across the nine real Codex triggers; the static atlas remains available for QA, editing, and reduced-motion fallback.
 
 | Lulu's behavior | What ships |
 | :--- | :--- |
@@ -37,12 +37,12 @@ The shipped `pet/spritesheet.webp` is an animated 8 × 11 atlas with 20 synchron
 
 ## 🎬 Motion library
 
-Each motion keeps its original playback speed. The cards below show the live preview, the state name used by Codex, the trigger, and a direct route to every source frame.
+Every live preview uses the shipped 80 ms phase cadence. The cards below show the state name used by Codex, the trigger, and a direct route to every source frame.
 
 <p>
   <img src="assets/gifs/idle.gif" alt="Lulu expressive idle" width="124" align="left">
   <strong>🌿 Expressive idle</strong><br>
-  <sub><code>idle</code> · 20 phases · 1.20 s</sub><br><br>
+  <sub><code>idle</code> · 20 phases · 1.60 s</sub><br><br>
   Appears when no task status is active and the pointer is in the neutral dead zone. The image-time loop adds breathing, blink, mouth movement, a one-paw wave, and a neutral return.<br>
   <a href="assets/state-phases/idle/">Open all 20 runtime phases →</a>
 </p>
@@ -51,7 +51,7 @@ Each motion keeps its original playback speed. The cards below show the live pre
 <p>
   <img src="assets/gifs/running-right.gif" alt="Lulu running right" width="124" align="left">
   <strong>➡️ Run right</strong><br>
-  <sub><code>running-right</code> · 20 phases · 1.20 s</sub><br><br>
+  <sub><code>running-right</code> · 20 phases · 1.60 s</sub><br><br>
   Appears while the floating pet is dragged toward screen-right.<br>
   <a href="assets/state-phases/running-right/">Open all 20 runtime phases →</a>
 </p>
@@ -60,7 +60,7 @@ Each motion keeps its original playback speed. The cards below show the live pre
 <p>
   <img src="assets/gifs/running-left.gif" alt="Lulu running left" width="124" align="left">
   <strong>⬅️ Run left</strong><br>
-  <sub><code>running-left</code> · 20 phases · 1.20 s</sub><br><br>
+  <sub><code>running-left</code> · 20 phases · 1.60 s</sub><br><br>
   Appears while the floating pet is dragged toward screen-left.<br>
   <a href="assets/state-phases/running-left/">Open all 20 runtime phases →</a>
 </p>
@@ -69,7 +69,7 @@ Each motion keeps its original playback speed. The cards below show the live pre
 <p>
   <img src="assets/gifs/waving.gif" alt="Lulu greeting" width="124" align="left">
   <strong>👋 Greeting</strong><br>
-  <sub><code>waving</code> · 20 phases · 1.20 s</sub><br><br>
+  <sub><code>waving</code> · 20 phases · 1.60 s</sub><br><br>
   Appears as the first-awake greeting after Lulu is woken.<br>
   <a href="assets/state-phases/waving/">Open all 20 runtime phases →</a>
 </p>
@@ -78,7 +78,7 @@ Each motion keeps its original playback speed. The cards below show the live pre
 <p>
   <img src="assets/gifs/jumping.gif" alt="Lulu jumping" width="124" align="left">
   <strong>✨ Jump</strong><br>
-  <sub><code>jumping</code> · 20 phases · 1.20 s</sub><br><br>
+  <sub><code>jumping</code> · 20 phases · 1.60 s</sub><br><br>
   Appears when the pointer enters or hovers over Lulu.<br>
   <a href="assets/state-phases/jumping/">Open all 20 runtime phases →</a>
 </p>
@@ -87,7 +87,7 @@ Each motion keeps its original playback speed. The cards below show the live pre
 <p>
   <img src="assets/gifs/failed.gif" alt="Lulu blocked reaction" width="124" align="left">
   <strong>🌧️ Blocked</strong><br>
-  <sub><code>failed</code> · 20 phases · 1.20 s</sub><br><br>
+  <sub><code>failed</code> · 20 phases · 1.60 s</sub><br><br>
   Appears when a chat fails, is blocked, or encounters a system error.<br>
   <a href="assets/state-phases/failed/">Open all 20 runtime phases →</a>
 </p>
@@ -96,7 +96,7 @@ Each motion keeps its original playback speed. The cards below show the live pre
 <p>
   <img src="assets/gifs/waiting.gif" alt="Lulu waiting for input" width="124" align="left">
   <strong>🙋 Needs input</strong><br>
-  <sub><code>waiting</code> · 20 phases · 1.20 s</sub><br><br>
+  <sub><code>waiting</code> · 20 phases · 1.60 s</sub><br><br>
   Appears when Codex needs approval, an answer, or another user decision.<br>
   <a href="assets/state-phases/waiting/">Open all 20 runtime phases →</a>
 </p>
@@ -105,7 +105,7 @@ Each motion keeps its original playback speed. The cards below show the live pre
 <p>
   <img src="assets/gifs/running.gif" alt="Lulu working on a computer" width="124" align="left">
   <strong>💻 Working</strong><br>
-  <sub><code>running</code> · 20 unique phases · 1.20 s</sub><br><br>
+  <sub><code>running</code> · 20 unique phases · 1.60 s</sub><br><br>
   Appears while a chat is actively working. Lulu types, blinks, reads the screen, and alternates paws; both arms remain continuously attached in every phase.<br>
   <a href="assets/state-phases/running/">Open all 20 runtime phases →</a>
 </p>
@@ -114,7 +114,7 @@ Each motion keeps its original playback speed. The cards below show the live pre
 <p>
   <img src="assets/gifs/review.gif" alt="Lulu reviewing output" width="124" align="left">
   <strong>✅ Ready / review</strong><br>
-  <sub><code>review</code> · 20 phases · 1.20 s</sub><br><br>
+  <sub><code>review</code> · 20 phases · 1.60 s</sub><br><br>
   Appears when a chat has completed and has unread activity ready to inspect.<br>
   <a href="assets/state-phases/review/">Open all 20 runtime phases →</a>
 </p>
@@ -329,7 +329,7 @@ Acceptance targets:
 
 - static and runtime atlases are exactly 1536 × 2288 RGBA;
 - `spriteVersionNumber` remains `2`;
-- runtime contains 20 phases totaling 1200 ms and loops indefinitely;
+- runtime contains 20 phases totaling 1600 ms and loops indefinitely;
 - all renderer-selectable columns in all nine native rows remain phase-synchronized;
 - both look rows remain render-identical to the static QA atlas;
 - all 15 named visual motions remain mapped to real native triggers;
