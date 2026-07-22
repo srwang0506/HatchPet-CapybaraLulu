@@ -583,7 +583,7 @@ def build_directional_gait_study(
     )
     draw.text(
         (margin + 47, 151),
-        "CONTACT  /  LOAD  /  PASS  /  FLIGHT  /  REACH  /  MIRRORED RETURN",
+        "CONTACT  /  LOAD  /  PASS  /  FLIGHT  /  RETURN  /  TWO QUICK CADENCES",
         fill=MUTED,
         font=font(14, style="mono"),
     )
@@ -596,14 +596,19 @@ def build_directional_gait_study(
     )
     draw.text(
         (width - margin, 125),
-        f"{durations[0]:03d} MS / PHASE  ·  {sum(durations) / 1000:.2f} S LOOP",
+        f"{durations[0]:03d} MS / PHASE  ·  2 × {sum(durations) / 2000:.2f} S GAITS",
         fill=INK,
         font=font(14, bold=True, style="mono"),
         anchor="ra",
     )
     draw.line((margin, 195, width - margin, 195), fill=ORANGE, width=5)
 
-    chapters = ("CONTACT A", "FLIGHT A", "CONTACT B", "FLIGHT B")
+    chapters = (
+        "GAIT A · OUT",
+        "GAIT A · RETURN",
+        "GAIT B · OUT",
+        "GAIT B · RETURN",
+    )
     for row_top in row_tops:
         for chapter_index, chapter in enumerate(chapters):
             start = frames_x + chapter_index * 5 * slot_width
@@ -667,7 +672,7 @@ def build_directional_gait_study(
     draw.line((margin, 704, width - margin, 704), fill=ORANGE, width=3)
     draw.text(
         (margin, 724),
-        "FRAMEWISE MIRROR  /  SAME CLOCK  /  OPPOSITE TRAVEL DIRECTION",
+        "20 UNIQUE POSES  /  TWO 0.80 S GAITS  /  FRAMEWISE MIRROR",
         fill=GREEN,
         font=font(12, bold=True, style="mono"),
     )

@@ -25,7 +25,7 @@ Capybara Lulu is a custom pet pack for the ChatGPT desktop app's Codex experienc
 > [!TIP]
 > **Ready to meet Lulu?** Run `python3 scripts/install.py`, restart the ChatGPT desktop app, then choose **水豚噜噜** in **Settings → Pets**.
 
-The shipped `pet/spritesheet.webp` is an animated 8 × 11 atlas with 20 synchronized image-time phases per native state. Its 1.60-second global loop keeps motion fluid without making Lulu feel hurried. Fifteen named visual motions are distributed across the nine real Codex triggers; the static atlas remains available for QA, editing, and reduced-motion fallback.
+The shipped `pet/spritesheet.webp` is an animated 8 × 11 atlas with 20 synchronized image-time phases per native state. The shared clock remains 1.60 seconds, while each directional run fits two complete 0.80-second gait cycles into that timeline so Lulu travels briskly without speeding up idle, waving, or computer work. Fifteen named visual motions are distributed across the nine real Codex triggers; the static atlas remains available for QA, editing, and reduced-motion fallback.
 
 <p align="center">
   <img src="assets/gifs/idle.gif" alt="Lulu breathing, blinking, and waving" width="132">
@@ -41,7 +41,7 @@ The shipped `pet/spritesheet.webp` is an animated 8 × 11 atlas with 20 synchron
 | :--- | :--- |
 | 🌿 **Expressive idle** | 20 image-time phases: rest, breath, blink, mouth open/close, a single-paw wave, and a soft neutral return. |
 | 💻 **Task awareness** | Dedicated working, waiting, ready-for-review, and blocked reactions. Working alone contains four connected micro-cycles: typing, blink, read-screen, and alternate typing. |
-| 🐾 **Physical interaction** | A pointer-hover jump plus alternating run cycles while Lulu is dragged left or right. |
+| 🐾 **Physical interaction** | A pointer-hover jump plus two brisk 0.80-second run cycles while Lulu is dragged left or right. |
 | 👀 **Directional gaze** | 16 clockwise look poses at exact 22.5° intervals, with a neutral dead zone that returns to idle. |
 | 🎞️ **Reproducible source** | 180 transparent runtime-phase PNGs, 87 native/look source PNGs, 10 GIF previews, deterministic builders, validators, and the full `hatch-pet` workflow. |
 
@@ -61,8 +61,8 @@ Every live preview uses the shipped 80 ms phase cadence. The cards below show th
 <p>
   <img src="assets/gifs/running-right.gif" alt="Lulu running right" width="124" align="left">
   <strong>➡️ Run right</strong><br>
-  <sub><code>running-right</code> · 20 unique phases · 1.60 s</sub><br><br>
-  Appears while the floating pet is dragged toward screen-right. A complete two-step cycle alternates both legs and opposing arms without tail-like rear shapes.<br>
+  <sub><code>running-right</code> · 20 unique phases · 2 × 0.80 s</sub><br><br>
+  Appears while the floating pet is dragged toward screen-right. Two distinct two-step cycles alternate matching yellow legs and opposing arms without tail-like rear shapes.<br>
   <a href="assets/state-phases/running-right/">Open all 20 runtime phases →</a>
 </p>
 <br clear="left">
@@ -70,7 +70,7 @@ Every live preview uses the shipped 80 ms phase cadence. The cards below show th
 <p>
   <img src="assets/gifs/running-left.gif" alt="Lulu running left" width="124" align="left">
   <strong>⬅️ Run left</strong><br>
-  <sub><code>running-left</code> · 20 unique phases · 1.60 s</sub><br><br>
+  <sub><code>running-left</code> · 20 unique phases · 2 × 0.80 s</sub><br><br>
   Appears while the floating pet is dragged toward screen-left. It is a framewise mirror of the approved rightward gait, preserving phase order and timing.<br>
   <a href="assets/state-phases/running-left/">Open all 20 runtime phases →</a>
 </p>
@@ -141,7 +141,7 @@ Every live preview uses the shipped 80 ms phase cadence. The cards below show th
 
 ### 🏃 Directional gait study
 
-Both travel directions use a true 20-pose, two-step loop. The same image-time clock drives a framewise mirrored pair, so cadence, body registration, and footfall order stay consistent in either direction.
+Both travel directions use 20 distinct poses split into two complete 10-phase gait cycles. Each gait takes 0.80 seconds inside the shared 1.60-second image-time clock; the leftward set is a framewise mirror, so cadence, body registration, and footfall order remain identical in either direction.
 
 <p align="center">
   <img src="assets/directional-gait.png" alt="Capybara Lulu 20-phase right and left running gait study" width="100%">
@@ -152,7 +152,7 @@ Both travel directions use a true 20-pose, two-step loop. The same image-time cl
   <img src="assets/gifs/running-right.gif" alt="Capybara Lulu's final rightward running loop" width="190">
 </p>
 
-<p align="center"><sub>Same 20-phase clock · exact framewise mirror · opposite screen direction</sub></p>
+<p align="center"><sub>Two 0.80-second gaits · same 20-phase clock · exact framewise mirror</sub></p>
 
 > [!NOTE]
 > When several chats are active, the official priority is **Needs input → Blocked → Ready → Running**. Selecting Lulu returns you to ChatGPT; selecting an item in the activity tray opens that chat. See the official [Pets documentation](https://learn.chatgpt.com/docs/pets?surface=app).
@@ -372,7 +372,8 @@ Acceptance targets:
 - all renderer-selectable columns in all nine native rows remain phase-synchronized;
 - both look rows remain render-identical to the static QA atlas;
 - all 15 named visual motions remain mapped to real native triggers;
-- both directional runs contain 20 distinct poses, and the left loop is the exact framewise mirror of the approved right loop with phase order preserved;
+- both directional runs contain 20 distinct poses forming two complete 0.80-second gaits, and the left loop is the exact framewise mirror of the approved right loop with phase order preserved;
+- both running legs use the same yellow plush palette with no dark ownership marker;
 - no eyebrows, tail, detached or extra limbs, limb switching, gait reversal, or baseline pop appears.
 
 ## 🗂️ Repository layout
