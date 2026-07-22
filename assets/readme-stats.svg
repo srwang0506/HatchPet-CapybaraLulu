@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="220" viewBox="0 0 1200 220" role="img" aria-labelledby="title description">
+  <title id="title">Capybara Lulu project statistics</title>
+  <desc id="description">Sixteen expressive idle phases, nine task-aware states, sixteen look directions, and eighty-three transparent source frames.</desc>
+
+  <g transform="translate(10 12)">
+    <rect width="280" height="196" rx="28" fill="#fff2e5" stroke="#f5d6b7" stroke-width="2"/>
+    <rect x="22" y="22" width="44" height="8" rx="4" fill="#f36a10"/>
+    <circle cx="250" cy="30" r="8" fill="#7d9b2e"/>
+    <text x="22" y="105" fill="#4c2a16" font-family="Avenir Next, Trebuchet MS, Arial, sans-serif" font-size="66" font-weight="800">16</text>
+    <text x="22" y="140" fill="#f36a10" font-family="Avenir Next, Trebuchet MS, Arial, sans-serif" font-size="15" font-weight="800" letter-spacing="2.2">EXPRESSIVE IDLE</text>
+    <text x="22" y="169" fill="#795647" font-family="Avenir Next, Trebuchet MS, Arial, sans-serif" font-size="17" font-weight="500">phases · 2.13 s</text>
+  </g>
+
+  <g transform="translate(310 12)">
+    <rect width="280" height="196" rx="28" fill="#fffaf2" stroke="#f1dfc9" stroke-width="2"/>
+    <rect x="22" y="22" width="44" height="8" rx="4" fill="#7d9b2e"/>
+    <circle cx="250" cy="30" r="8" fill="#f36a10"/>
+    <text x="22" y="105" fill="#4c2a16" font-family="Avenir Next, Trebuchet MS, Arial, sans-serif" font-size="66" font-weight="800">9</text>
+    <text x="22" y="140" fill="#7d9b2e" font-family="Avenir Next, Trebuchet MS, Arial, sans-serif" font-size="15" font-weight="800" letter-spacing="2.2">TASK-AWARE</text>
+    <text x="22" y="169" fill="#795647" font-family="Avenir Next, Trebuchet MS, Arial, sans-serif" font-size="17" font-weight="500">animation states</text>
+  </g>
+
+  <g transform="translate(610 12)">
+    <rect width="280" height="196" rx="28" fill="#f4f7e9" stroke="#dce6bf" stroke-width="2"/>
+    <rect x="22" y="22" width="44" height="8" rx="4" fill="#7d9b2e"/>
+    <circle cx="250" cy="30" r="8" fill="#f36a10"/>
+    <text x="22" y="105" fill="#4c2a16" font-family="Avenir Next, Trebuchet MS, Arial, sans-serif" font-size="66" font-weight="800">16</text>
+    <text x="22" y="140" fill="#7d9b2e" font-family="Avenir Next, Trebuchet MS, Arial, sans-serif" font-size="15" font-weight="800" letter-spacing="2.2">LOOK DIRECTIONS</text>
+    <text x="22" y="169" fill="#795647" font-family="Avenir Next, Trebuchet MS, Arial, sans-serif" font-size="17" font-weight="500">22.5° clock steps</text>
+  </g>
+
+  <g transform="translate(910 12)">
+    <rect width="280" height="196" rx="28" fill="#fff6ec" stroke="#f2dcc5" stroke-width="2"/>
+    <rect x="22" y="22" width="44" height="8" rx="4" fill="#f36a10"/>
+    <circle cx="250" cy="30" r="8" fill="#7d9b2e"/>
+    <text x="22" y="105" fill="#4c2a16" font-family="Avenir Next, Trebuchet MS, Arial, sans-serif" font-size="66" font-weight="800">83</text>
+    <text x="22" y="140" fill="#f36a10" font-family="Avenir Next, Trebuchet MS, Arial, sans-serif" font-size="15" font-weight="800" letter-spacing="2.2">SOURCE FRAMES</text>
+    <text x="22" y="169" fill="#795647" font-family="Avenir Next, Trebuchet MS, Arial, sans-serif" font-size="17" font-weight="500">transparent PNGs</text>
+  </g>
+</svg>

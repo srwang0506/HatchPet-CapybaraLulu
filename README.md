@@ -11,6 +11,10 @@
 </p>
 
 <p align="center">
+  <img src="assets/readme-stats.svg" alt="16 expressive idle phases, 9 task-aware states, 16 look directions, and 83 transparent source frames" width="100%">
+</p>
+
+<p align="center">
   <img src="assets/lulu-in-motion.png" alt="Lulu in Motion — Capybara Lulu running, jumping, waving, working, waiting, and reviewing" width="100%">
 </p>
 
@@ -23,105 +27,68 @@ Capybara Lulu is a custom pet pack for the ChatGPT desktop app's Codex experienc
 
 The shipped `pet/spritesheet.webp` is an animated 8 × 11 atlas. Its 16-frame, 2.13-second image-time idle loop prevents the long frozen holds caused by the desktop renderer's slower sprite-column clock. The static atlas remains available for QA, editing, and reduced-motion fallback.
 
-- 🌿 **Expressive at rest.** Breathing, blinking, mouth movement, a one-paw wave, and a soft neutral return share one seamless idle timeline.
-- 💻 **Aware of the task.** Working, waiting, review, and blocked states each have their own readable reaction.
-- 🐾 **Responsive on the desktop.** Lulu jumps on hover and alternates her gait while being dragged left or right.
-- 👀 **Able to follow you.** Sixteen clockwise gaze poses cover the full pointer circle in 22.5° steps.
-- 🎞️ **Complete behind the scenes.** All 83 transparent PNG frames, GIF previews, build tools, and validators are included.
+| Lulu's behavior | What ships |
+| :--- | :--- |
+| 🌿 **Expressive idle** | 16 timed phases: rest, breath, blink, mouth open/close, a single-paw wave, and a soft neutral return. |
+| 💻 **Task awareness** | Dedicated working, waiting, ready-for-review, and blocked reactions that remain active with the real task state. |
+| 🐾 **Physical interaction** | A pointer-hover jump plus alternating run cycles while Lulu is dragged left or right. |
+| 👀 **Directional gaze** | 16 clockwise look poses at exact 22.5° intervals, with a neutral dead zone that returns to idle. |
+| 🎞️ **Reproducible source** | 83 transparent PNG frames, 10 GIF previews, a deterministic gallery builder, validators, and the full `hatch-pet` workflow. |
 
 ## 🎬 Motion library
 
-Each motion keeps its original playback speed. The cards below show the live preview, the state name used by Codex, the trigger, and a direct route to every source frame.
+Each motion keeps its original playback speed. This live catalogue preserves the full state name, trigger, timing, and direct route to every source frame.
 
-<p>
-  <img src="assets/gifs/idle.gif" alt="Lulu expressive idle" width="124" align="left">
-  <strong>🌿 Expressive idle</strong><br>
-  <sub><code>idle</code> · 16 frames · 2.13 s</sub><br><br>
-  Appears when no task status is active and the pointer is in the neutral dead zone. The image-time loop adds breathing, blink, mouth movement, a one-paw wave, and a neutral return.<br>
-  <a href="assets/frames/idle/">Open all 16 source frames →</a>
-</p>
-<br clear="left">
-
-<p>
-  <img src="assets/gifs/running-right.gif" alt="Lulu running right" width="124" align="left">
-  <strong>➡️ Run right</strong><br>
-  <sub><code>running-right</code> · 8 frames · 1.06 s</sub><br><br>
-  Appears while the floating pet is dragged toward screen-right.<br>
-  <a href="assets/frames/running-right/">Open all 8 source frames →</a>
-</p>
-<br clear="left">
-
-<p>
-  <img src="assets/gifs/running-left.gif" alt="Lulu running left" width="124" align="left">
-  <strong>⬅️ Run left</strong><br>
-  <sub><code>running-left</code> · 8 frames · 1.06 s</sub><br><br>
-  Appears while the floating pet is dragged toward screen-left.<br>
-  <a href="assets/frames/running-left/">Open all 8 source frames →</a>
-</p>
-<br clear="left">
-
-<p>
-  <img src="assets/gifs/waving.gif" alt="Lulu greeting" width="124" align="left">
-  <strong>👋 Greeting</strong><br>
-  <sub><code>waving</code> · 4 frames · 0.70 s</sub><br><br>
-  Appears as the first-awake greeting after Lulu is woken.<br>
-  <a href="assets/frames/waving/">Open all 4 source frames →</a>
-</p>
-<br clear="left">
-
-<p>
-  <img src="assets/gifs/jumping.gif" alt="Lulu jumping" width="124" align="left">
-  <strong>✨ Jump</strong><br>
-  <sub><code>jumping</code> · 5 frames · 0.84 s</sub><br><br>
-  Appears when the pointer enters or hovers over Lulu.<br>
-  <a href="assets/frames/jumping/">Open all 5 source frames →</a>
-</p>
-<br clear="left">
-
-<p>
-  <img src="assets/gifs/failed.gif" alt="Lulu blocked reaction" width="124" align="left">
-  <strong>🌧️ Blocked</strong><br>
-  <sub><code>failed</code> · 8 frames · 1.22 s</sub><br><br>
-  Appears when a chat fails, is blocked, or encounters a system error.<br>
-  <a href="assets/frames/failed/">Open all 8 source frames →</a>
-</p>
-<br clear="left">
-
-<p>
-  <img src="assets/gifs/waiting.gif" alt="Lulu waiting for input" width="124" align="left">
-  <strong>🙋 Needs input</strong><br>
-  <sub><code>waiting</code> · 6 frames · 1.01 s</sub><br><br>
-  Appears when Codex needs approval, an answer, or another user decision.<br>
-  <a href="assets/frames/waiting/">Open all 6 source frames →</a>
-</p>
-<br clear="left">
-
-<p>
-  <img src="assets/gifs/running.gif" alt="Lulu working on a computer" width="124" align="left">
-  <strong>💻 Working</strong><br>
-  <sub><code>running</code> · 6 frames · 0.82 s</sub><br><br>
-  Appears while a chat is actively working. Lulu uses the computer instead of running in place.<br>
-  <a href="assets/frames/running/">Open all 6 source frames →</a>
-</p>
-<br clear="left">
-
-<p>
-  <img src="assets/gifs/review.gif" alt="Lulu reviewing output" width="124" align="left">
-  <strong>✅ Ready / review</strong><br>
-  <sub><code>review</code> · 6 frames · 1.03 s</sub><br><br>
-  Appears when a chat has completed and has unread activity ready to inspect.<br>
-  <a href="assets/frames/review/">Open all 6 source frames →</a>
-</p>
-<br clear="left">
-
-<p>
-  <img src="assets/gifs/look-directions.gif" alt="Lulu looking in 16 directions" width="124" align="left">
-  <strong>👀 Look around</strong><br>
-  <sub>rows 9–10 · 16 clockwise directions</sub><br><br>
-  Follows the pointer while Lulu is idle, working, or greeting. The neutral/front dead zone falls back to the expressive idle.<br>
-  <a href="assets/frames/look-directions/">Open all 16 direction frames →</a>
-</p>
-<br clear="left">
+<table>
+  <thead>
+    <tr>
+      <th width="150" align="center">Live preview</th>
+      <th>Motion · trigger · source</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center" valign="middle"><img src="assets/gifs/idle.gif" alt="Lulu expressive idle" width="116"></td>
+      <td valign="middle"><strong>🌿 Expressive idle</strong> &nbsp; <code>idle</code><br><sub>16 frames · 2.13 s</sub><br><br>When no task status is active and the pointer is in the neutral dead zone. The image-time loop adds breathing, blink, mouth movement, a one-paw wave, and a neutral return.<br><a href="assets/frames/idle/">Open all 16 source frames →</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="middle"><img src="assets/gifs/running-right.gif" alt="Lulu running right" width="116"></td>
+      <td valign="middle"><strong>➡️ Run right</strong> &nbsp; <code>running-right</code><br><sub>8 frames · 1.06 s</sub><br><br>While the floating pet is dragged toward screen-right.<br><a href="assets/frames/running-right/">Open all 8 source frames →</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="middle"><img src="assets/gifs/running-left.gif" alt="Lulu running left" width="116"></td>
+      <td valign="middle"><strong>⬅️ Run left</strong> &nbsp; <code>running-left</code><br><sub>8 frames · 1.06 s</sub><br><br>While the floating pet is dragged toward screen-left.<br><a href="assets/frames/running-left/">Open all 8 source frames →</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="middle"><img src="assets/gifs/waving.gif" alt="Lulu greeting" width="116"></td>
+      <td valign="middle"><strong>👋 Greeting</strong> &nbsp; <code>waving</code><br><sub>4 frames · 0.70 s</sub><br><br>As the first-awake greeting after Lulu is woken.<br><a href="assets/frames/waving/">Open all 4 source frames →</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="middle"><img src="assets/gifs/jumping.gif" alt="Lulu jumping" width="116"></td>
+      <td valign="middle"><strong>✨ Jump</strong> &nbsp; <code>jumping</code><br><sub>5 frames · 0.84 s</sub><br><br>When the pointer enters or hovers over Lulu.<br><a href="assets/frames/jumping/">Open all 5 source frames →</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="middle"><img src="assets/gifs/failed.gif" alt="Lulu blocked reaction" width="116"></td>
+      <td valign="middle"><strong>🌧️ Blocked</strong> &nbsp; <code>failed</code><br><sub>8 frames · 1.22 s</sub><br><br>When a chat fails, is blocked, or encounters a system error.<br><a href="assets/frames/failed/">Open all 8 source frames →</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="middle"><img src="assets/gifs/waiting.gif" alt="Lulu waiting for input" width="116"></td>
+      <td valign="middle"><strong>🙋 Needs input</strong> &nbsp; <code>waiting</code><br><sub>6 frames · 1.01 s</sub><br><br>When Codex needs approval, an answer, or another user decision.<br><a href="assets/frames/waiting/">Open all 6 source frames →</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="middle"><img src="assets/gifs/running.gif" alt="Lulu working on a computer" width="116"></td>
+      <td valign="middle"><strong>💻 Working</strong> &nbsp; <code>running</code><br><sub>6 frames · 0.82 s</sub><br><br>While a chat is actively working. Lulu uses the computer instead of running in place.<br><a href="assets/frames/running/">Open all 6 source frames →</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="middle"><img src="assets/gifs/review.gif" alt="Lulu reviewing output" width="116"></td>
+      <td valign="middle"><strong>✅ Ready / review</strong> &nbsp; <code>review</code><br><sub>6 frames · 1.03 s</sub><br><br>When a chat has completed and has unread activity ready to inspect.<br><a href="assets/frames/review/">Open all 6 source frames →</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="middle"><img src="assets/gifs/look-directions.gif" alt="Lulu looking in 16 directions" width="116"></td>
+      <td valign="middle"><strong>👀 Look around</strong> &nbsp; <code>rows 9–10</code><br><sub>16 clockwise directions · 22.5° steps</sub><br><br>Follows the pointer while Lulu is idle, working, or greeting. The neutral/front dead zone falls back to expressive idle.<br><a href="assets/frames/look-directions/">Open all 16 direction frames →</a></td>
+    </tr>
+  </tbody>
+</table>
 
 > [!NOTE]
 > When several chats are active, the official priority is **Needs input → Blocked → Ready → Running**. Selecting Lulu returns you to ChatGPT; selecting an item in the activity tray opens that chat. See the official [Pets documentation](https://learn.chatgpt.com/docs/pets?surface=app).
@@ -237,10 +204,12 @@ Only `name`, `description`, `imageUrl`, and `spriteVersionNumber` are accepted. 
 
 ## ⚙️ Codex and Claude Code configuration
 
-- 🟢 **ChatGPT desktop app · Codex — native overlay.** Run `python3 scripts/install.py`, restart the app, then select Lulu in **Settings → Pets**.
-- 🟠 **Codex CLI — native in supported terminals.** Install the same local package and select Lulu with `/pets` in iTerm2 3.6+, Kitty graphics, or Sixel-capable terminals.
-- ⚪ **Codex IDE extension — no pet surface.** Use the desktop app or Codex CLI when you want the floating companion.
-- 🔵 **Claude Code — project maintenance only.** It can work with the repository, source frames, and docs, but copying `pet/` into `~/.claude` does not create a desktop overlay.
+| Surface | Availability | Recommended setup |
+| :--- | :---: | :--- |
+| 🟢 **ChatGPT desktop · Codex** | **Native overlay** | Run `python3 scripts/install.py`, restart the app, then select **水豚噜噜** in **Settings → Pets**. |
+| 🟠 **Codex CLI** | **Native in supported terminals** | Install the same local package, then use `/pets` in iTerm2 3.6+, Kitty graphics, or a Sixel-capable terminal. |
+| ⚪ **Codex IDE extension** | **No pet surface** | Use the desktop app or Codex CLI when you want Lulu visible as a companion. |
+| 🔵 **Claude Code** | **Project maintenance only** | Claude can edit the repository, source frames, and docs; copying `pet/` into `~/.claude` does not create a desktop overlay. |
 
 Claude Code can still maintain the project cleanly:
 
