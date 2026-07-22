@@ -169,17 +169,37 @@ def save_gif(name: str, frames: list[Image.Image], durations: list[int]) -> str:
     if len(frames) != len(durations):
         raise ValueError(f"{name}: {len(frames)} frames but {len(durations)} durations")
     output = GIF_ROOT / f"{name}.gif"
-    preview_frames = [flatten_on_white(frame) for frame in frames]
+    preview_frames = [transparent_gif_frame(frame) for frame in frames]
     preview_frames[0].save(
         output,
         save_all=True,
         append_images=preview_frames[1:],
         duration=durations,
         loop=0,
+        transparency=255,
         disposal=2,
         optimize=False,
     )
     return output.relative_to(ROOT).as_posix()
+
+
+def transparent_gif_frame(frame: Image.Image, *, alpha_threshold: int = 64) -> Image.Image:
+    """Quantize one RGBA frame while reserving palette index 255 for transparency."""
+    rgba = frame.convert("RGBA")
+    alpha = rgba.getchannel("A")
+    paletted = rgba.convert("RGB").quantize(
+        colors=255,
+        method=Image.Quantize.MEDIANCUT,
+        dither=Image.Dither.FLOYDSTEINBERG,
+    )
+    transparent_mask = alpha.point(lambda value: 255 if value <= alpha_threshold else 0)
+    paletted.paste(255, mask=transparent_mask)
+    palette = paletted.getpalette() or []
+    palette.extend([0] * (768 - len(palette)))
+    palette[255 * 3 : 255 * 3 + 3] = [0, 0, 0]
+    paletted.putpalette(palette[:768])
+    paletted.info["transparency"] = 255
+    return paletted
 
 
 def extract_runtime_idle() -> tuple[list[Image.Image], list[int]]:

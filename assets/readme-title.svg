@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="180" viewBox="0 0 1200 180" role="img" aria-labelledby="title description">
+  <title id="title">HatchPet: Capybara Lulu</title>
+  <desc id="description">A warm, expressive Capybara Lulu desktop companion for Codex.</desc>
+  <rect width="1200" height="180" rx="32" fill="#fffaf2"/>
+  <circle cx="54" cy="54" r="8" fill="#f36a10"/>
+  <circle cx="80" cy="54" r="8" fill="#7d9b2e"/>
+  <circle cx="1146" cy="126" r="8" fill="#f36a10"/>
+  <circle cx="1120" cy="126" r="8" fill="#7d9b2e"/>
+  <text x="600" y="42" text-anchor="middle" fill="#7d9b2e" font-family="Avenir Next, Trebuchet MS, Arial, sans-serif" font-size="16" font-weight="700" letter-spacing="5">HATCHPET DESKTOP COMPANION</text>
+  <text x="600" y="105" text-anchor="middle" font-family="Avenir Next, Trebuchet MS, Arial, sans-serif" font-size="48" font-weight="700">
+    <tspan fill="#4c2a16">HatchPet: </tspan><tspan fill="#f36a10" font-weight="800">Capybara Lulu</tspan>
+  </text>
+  <text x="600" y="145" text-anchor="middle" fill="#795647" font-family="Avenir Next, Trebuchet MS, Arial, sans-serif" font-size="20" font-weight="500">A warm, expressive Capybara Lulu desktop companion for Codex.</text>
+</svg>

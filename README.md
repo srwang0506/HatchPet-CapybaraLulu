@@ -3,28 +3,34 @@
 </p>
 
 <p align="center">
-  <strong>A warm, expressive Capybara Lulu desktop companion for Codex.</strong><br>
-  Smooth idle motion · nine task-aware states · 16-direction gaze · complete source frames
+  <img src="assets/readme-title.svg" alt="HatchPet: Capybara Lulu — A warm, expressive Capybara Lulu desktop companion for Codex." width="84%">
 </p>
 
 <p align="center">
   <a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a>
 </p>
 
-<p align="center">
-  <img alt="Codex Pet ready" src="https://img.shields.io/badge/Codex_Pet-ready-f47b20?style=flat-square">
-  <img alt="83 source frames" src="https://img.shields.io/badge/source_frames-83-f2a65a?style=flat-square">
-  <img alt="16 look directions" src="https://img.shields.io/badge/look_directions-16-79a857?style=flat-square">
-  <img alt="Apache 2.0 license" src="https://img.shields.io/badge/license-Apache--2.0-4c2a16?style=flat-square">
-</p>
+<table>
+  <tr>
+    <td align="center" width="25%"><strong>16</strong><br><sub>EXPRESSIVE IDLE PHASES</sub></td>
+    <td align="center" width="25%"><strong>9</strong><br><sub>TASK-AWARE STATES</sub></td>
+    <td align="center" width="25%"><strong>16</strong><br><sub>LOOK DIRECTIONS</sub></td>
+    <td align="center" width="25%"><strong>83</strong><br><sub>TRANSPARENT SOURCE FRAMES</sub></td>
+  </tr>
+</table>
+
+<p align="center"><sub>Codex Pet ready &nbsp;·&nbsp; Apache-2.0 &nbsp;·&nbsp; Source-complete &nbsp;·&nbsp; Deterministically validated</sub></p>
 
 <p align="center">
   <img src="assets/lulu-in-motion.png" alt="Lulu in Motion — Capybara Lulu running, jumping, waving, working, waiting, and reviewing" width="100%">
 </p>
 
-## Meet Lulu
+## 🧡 Meet Lulu
 
 Capybara Lulu is a custom pet pack for the ChatGPT desktop app's Codex experience. Lulu breathes, blinks, opens her mouth, and waves with one paw while idle; runs when dragged; follows the pointer; and reacts when Codex is working, waiting for input, ready for review, or blocked.
+
+> [!TIP]
+> **Ready to meet Lulu?** Run `python3 scripts/install.py`, restart the ChatGPT desktop app, then choose **水豚噜噜** in **Settings → Pets**.
 
 The shipped `pet/spritesheet.webp` is an animated 8 × 11 atlas. Its 16-frame, 2.13-second image-time idle loop prevents the long frozen holds caused by the desktop renderer's slower sprite-column clock. The static atlas remains available for QA, editing, and reduced-motion fallback.
 
@@ -36,7 +42,7 @@ The shipped `pet/spritesheet.webp` is an animated 8 × 11 atlas. Its 16-frame, 2
 | Directional gaze | 16 clockwise look poses at 22.5° intervals |
 | Reproducible source | 83 extracted PNG frames, 10 GIF previews, a deterministic gallery builder, validators, and the upgraded `hatch-pet` workflow |
 
-## Animation and trigger map
+## 🎬 Animation and trigger map
 
 These are the current Codex desktop mappings. Codex owns state transitions and may refine dwell times in later app builds.
 
@@ -55,9 +61,9 @@ These are the current Codex desktop mappings. Codex owns state transitions and m
 
 When several chats are active, the official pet priority is **Needs input → Blocked → Ready → Running**. Selecting Lulu returns you to ChatGPT; selecting an item in the activity tray opens that chat. See the official [Pets documentation](https://learn.chatgpt.com/docs/pets?surface=app).
 
-All README GIFs and overview sheets are rendered on a pure white background for consistent GitHub display. The 83 individual source PNGs and installable atlases retain their original transparency.
+README GIFs retain transparent backgrounds so Lulu sits naturally on light and dark GitHub themes. The overview sheets use a pure white editorial canvas; all 83 source PNGs and installable atlases retain their original transparency.
 
-## Every animation frame
+## 🖼️ Every animation frame
 
 All 83 shipped frames are available as individual transparent PNGs under [`assets/frames`](assets/frames/). The machine-readable timing and direction map lives in [`assets/frames/manifest.json`](assets/frames/manifest.json).
 
@@ -65,7 +71,7 @@ All 83 shipped frames are available as individual transparent PNGs under [`asset
   <img src="assets/all-frames.png" alt="All Capybara Lulu animation frames" width="100%">
 </p>
 
-### Expressive idle timeline
+### 🌿 Expressive idle timeline
 
 The idle loop is deliberately dense: it returns through lower transition poses rather than snapping from a raised paw to neutral. The viewer-right paw waves; the viewer-left paw stays lowered.
 
@@ -73,10 +79,10 @@ The idle loop is deliberately dense: it returns through lower transition poses r
   <img src="assets/idle-frames.png" alt="Capybara Lulu expressive idle frame timeline" width="100%">
 </p>
 
-### Sprite atlas and gaze QA
+### 👀 Sprite atlas and gaze QA
 
 <details>
-<summary>Open the full 8 × 11 sprite atlas contact sheet</summary>
+<summary>🧩 Open the full 8 × 11 sprite atlas contact sheet</summary>
 
 <p align="center">
   <img src="assets/sprite-atlas.png" alt="Capybara Lulu sprite atlas contact sheet" width="100%">
@@ -85,7 +91,7 @@ The idle loop is deliberately dense: it returns through lower transition poses r
 </details>
 
 <details>
-<summary>Open the neutral plus 16-direction gaze sheet</summary>
+<summary>🧭 Open the neutral plus 16-direction gaze sheet</summary>
 
 <p align="center">
   <img src="assets/look-directions.png" alt="Capybara Lulu 16-direction gaze sheet" width="100%">
@@ -93,9 +99,9 @@ The idle loop is deliberately dense: it returns through lower transition poses r
 
 </details>
 
-## Install in Codex
+## 🐾 Install in Codex
 
-### One-command local install
+### ⚡ One-command local install
 
 Download or clone the repository, then run this from the project root:
 
@@ -111,7 +117,7 @@ The installer:
 
 Use `python3 scripts/install.py --no-select` if you only want to stage the pet. Fully quit and reopen the ChatGPT desktop app after installation because the custom-pet list is process-cached.
 
-### Manual install
+### 🧰 Manual install
 
 macOS and Linux:
 
@@ -137,7 +143,7 @@ If the current client does not select Lulu through the UI, add this to `~/.codex
 selected-avatar-id = "custom:capybara-lulu"
 ```
 
-### Keep task animations looping at their original speed (macOS, optional)
+### 🔁 Keep task animations looping at their original speed (macOS, optional)
 
 The desktop renderer normally plays a non-idle row three times and then falls back to idle, even when Codex is still working or waiting. This opt-in patch keeps the selected action repeating for the full lifetime of its real desktop state. It does **not** slow frames down, delay state changes, or keep a completed working state alive.
 
@@ -150,11 +156,11 @@ node hatch-pet/scripts/patch_codex_pet_playback.mjs --apply /Applications/ChatGP
 
 Fully quit and reopen ChatGPT afterward. Application updates may replace the renderer patch; rerun `--check` after an update. The command output includes `backupDir` for an exact restore if needed.
 
-### Codex CLI
+### ⌨️ Codex CLI
 
 In an interactive Codex CLI session, enter `/pets` or `/pet` and choose **水豚噜噜**. Terminal pets require iTerm2 3.6+, Kitty graphics, or Sixel support and are unavailable inside tmux and Zellij. The IDE extension does not provide a pet picker or floating overlay.
 
-### HTTPS install link
+### 🔗 HTTPS install link
 
 Codex accepts pet install links with an HTTPS spritesheet URL. This repository's ready-to-share link is:
 
@@ -164,7 +170,7 @@ codex://pets/install?name=%E6%B0%B4%E8%B1%9A%E5%99%9C%E5%99%9C&description=Capyb
 
 Only `name`, `description`, `imageUrl`, and `spriteVersionNumber` are accepted. `imageUrl` must be an absolute HTTPS URL. `spriteVersionNumber=2` is the Codex 8 × 11 sprite protocol; it is not this project's release number.
 
-## Codex and Claude Code configuration
+## ⚙️ Codex and Claude Code configuration
 
 | Environment | Native Lulu overlay? | Recommended setup |
 | --- | --- | --- |
@@ -185,7 +191,7 @@ The checked-in [`CLAUDE.md`](CLAUDE.md) and [`AGENTS.md`](AGENTS.md) preserve Lu
 
 The bundled [`hatch-pet`](hatch-pet/) workflow is the Codex authoring and QA tool used to build this pet. It calls Codex image-generation capabilities and writes the Codex pet contract, so copying it into Claude Code does **not** add a pet renderer or guarantee that its image-generation steps are available. A true Claude Code desktop companion would need a separate renderer and a hook bridge; this repository does not pretend that native support exists.
 
-## Optional: install the authoring skill in Codex
+## 🧩 Optional: install the authoring skill in Codex
 
 The repository includes the upgraded `hatch-pet` skill with smooth image-time idle packaging, expressive phase manifests, 9-state QA, and 16-direction validation.
 
@@ -196,7 +202,7 @@ rsync -a hatch-pet/ ~/.codex/skills/hatch-pet/
 
 Restart Codex or reload skills, then invoke `$hatch-pet` when creating or repairing a pet. This step is optional for using Lulu; the ready-to-install pet is already in [`pet/`](pet/).
 
-## Reduced motion
+## ♿ Reduced motion
 
 Official pets respect the operating system reduced-motion preference. This project's smooth idle uses the animated WebP image clock, which can continue even when JavaScript sprite timers are reduced. If continuous idle motion is not appropriate, replace the installed runtime with the static QA atlas:
 
@@ -206,7 +212,7 @@ cp assets/spritesheet-static.webp ~/.codex/pets/capybara-lulu/spritesheet.webp
 
 Restart the app afterward. The task states and 16 look directions remain available; only the expressive image-time idle wrapper is removed.
 
-## Development and validation
+## 🧪 Development and validation
 
 Create an environment and rebuild the public galleries:
 
@@ -249,7 +255,7 @@ Acceptance targets:
 - rows 1–10 are render-identical across every runtime frame;
 - no eyebrows, tail, extra limbs, limb switching, gait reversal, or baseline pop appears.
 
-## Repository layout
+## 🗂️ Repository layout
 
 ```text
 capybara-lulu/
@@ -263,10 +269,10 @@ capybara-lulu/
 └── README.zh-CN.md         # 简体中文文档
 ```
 
-## Contributing
+## 🤝 Contributing
 
 Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before changing art or timing. Visual changes must include regenerated GIFs and galleries plus deterministic validation. Security issues should follow [`SECURITY.md`](SECURITY.md).
 
-## License and names
+## 📜 License and names
 
 Code, documentation, and repository assets are provided under the [Apache License 2.0](LICENSE), subject to the rights described in [`NOTICE`](NOTICE). This is an independent project and is not affiliated with OpenAI or Anthropic. Codex, ChatGPT, Claude, and Claude Code remain the property of their respective owners.
