@@ -1,0 +1,19 @@
+name: Feature request
+description: Propose a new Lulu interaction, pose, or project improvement.
+title: "[Feature] "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Proposed change
+      description: Explain the user-visible behavior and when it should trigger.
+    validations:
+      required: true
+  - type: textarea
+    id: identity
+    attributes:
+      label: Identity and motion notes
+      description: Explain how the idea preserves Lulu's body, fixed limbs, baseline, and loop continuity.
+    validations:
+      required: true

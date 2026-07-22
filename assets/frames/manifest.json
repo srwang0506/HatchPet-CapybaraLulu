@@ -1,0 +1,297 @@
+{
+  "format": {
+    "columns": 8,
+    "rows": 11,
+    "cell": [
+      192,
+      208
+    ],
+    "spriteVersionNumber": 2
+  },
+  "animations": {
+    "idle": {
+      "frames": [
+        "assets/frames/idle/00.png",
+        "assets/frames/idle/01.png",
+        "assets/frames/idle/02.png",
+        "assets/frames/idle/03.png",
+        "assets/frames/idle/04.png",
+        "assets/frames/idle/05.png",
+        "assets/frames/idle/06.png",
+        "assets/frames/idle/07.png",
+        "assets/frames/idle/08.png",
+        "assets/frames/idle/09.png",
+        "assets/frames/idle/10.png",
+        "assets/frames/idle/11.png",
+        "assets/frames/idle/12.png",
+        "assets/frames/idle/13.png",
+        "assets/frames/idle/14.png",
+        "assets/frames/idle/15.png"
+      ],
+      "gif": "assets/gifs/idle.gif",
+      "durations_ms": [
+        240,
+        160,
+        90,
+        160,
+        160,
+        120,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        110,
+        130,
+        260
+      ],
+      "labels": [
+        "closed-mouth-rest",
+        "breathing-lift",
+        "blink",
+        "mouth-open",
+        "mouth-close",
+        "wave-rest",
+        "wave-quarter-lift",
+        "wave-half-lift",
+        "wave-apex-out",
+        "wave-apex-center-1",
+        "wave-apex-in",
+        "wave-apex-center-2",
+        "wave-apex-out-return",
+        "wave-half-lower",
+        "wave-rest-return",
+        "neutral-return"
+      ]
+    },
+    "running-right": {
+      "frames": [
+        "assets/frames/running-right/00.png",
+        "assets/frames/running-right/01.png",
+        "assets/frames/running-right/02.png",
+        "assets/frames/running-right/03.png",
+        "assets/frames/running-right/04.png",
+        "assets/frames/running-right/05.png",
+        "assets/frames/running-right/06.png",
+        "assets/frames/running-right/07.png"
+      ],
+      "gif": "assets/gifs/running-right.gif",
+      "durations_ms": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        220
+      ],
+      "atlas_row": 1
+    },
+    "running-left": {
+      "frames": [
+        "assets/frames/running-left/00.png",
+        "assets/frames/running-left/01.png",
+        "assets/frames/running-left/02.png",
+        "assets/frames/running-left/03.png",
+        "assets/frames/running-left/04.png",
+        "assets/frames/running-left/05.png",
+        "assets/frames/running-left/06.png",
+        "assets/frames/running-left/07.png"
+      ],
+      "gif": "assets/gifs/running-left.gif",
+      "durations_ms": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        220
+      ],
+      "atlas_row": 2
+    },
+    "waving": {
+      "frames": [
+        "assets/frames/waving/00.png",
+        "assets/frames/waving/01.png",
+        "assets/frames/waving/02.png",
+        "assets/frames/waving/03.png"
+      ],
+      "gif": "assets/gifs/waving.gif",
+      "durations_ms": [
+        140,
+        140,
+        140,
+        280
+      ],
+      "atlas_row": 3
+    },
+    "jumping": {
+      "frames": [
+        "assets/frames/jumping/00.png",
+        "assets/frames/jumping/01.png",
+        "assets/frames/jumping/02.png",
+        "assets/frames/jumping/03.png",
+        "assets/frames/jumping/04.png"
+      ],
+      "gif": "assets/gifs/jumping.gif",
+      "durations_ms": [
+        140,
+        140,
+        140,
+        140,
+        280
+      ],
+      "atlas_row": 4
+    },
+    "failed": {
+      "frames": [
+        "assets/frames/failed/00.png",
+        "assets/frames/failed/01.png",
+        "assets/frames/failed/02.png",
+        "assets/frames/failed/03.png",
+        "assets/frames/failed/04.png",
+        "assets/frames/failed/05.png",
+        "assets/frames/failed/06.png",
+        "assets/frames/failed/07.png"
+      ],
+      "gif": "assets/gifs/failed.gif",
+      "durations_ms": [
+        140,
+        140,
+        140,
+        140,
+        140,
+        140,
+        140,
+        240
+      ],
+      "atlas_row": 5
+    },
+    "waiting": {
+      "frames": [
+        "assets/frames/waiting/00.png",
+        "assets/frames/waiting/01.png",
+        "assets/frames/waiting/02.png",
+        "assets/frames/waiting/03.png",
+        "assets/frames/waiting/04.png",
+        "assets/frames/waiting/05.png"
+      ],
+      "gif": "assets/gifs/waiting.gif",
+      "durations_ms": [
+        150,
+        150,
+        150,
+        150,
+        150,
+        260
+      ],
+      "atlas_row": 6
+    },
+    "running": {
+      "frames": [
+        "assets/frames/running/00.png",
+        "assets/frames/running/01.png",
+        "assets/frames/running/02.png",
+        "assets/frames/running/03.png",
+        "assets/frames/running/04.png",
+        "assets/frames/running/05.png"
+      ],
+      "gif": "assets/gifs/running.gif",
+      "durations_ms": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        220
+      ],
+      "atlas_row": 7
+    },
+    "review": {
+      "frames": [
+        "assets/frames/review/00.png",
+        "assets/frames/review/01.png",
+        "assets/frames/review/02.png",
+        "assets/frames/review/03.png",
+        "assets/frames/review/04.png",
+        "assets/frames/review/05.png"
+      ],
+      "gif": "assets/gifs/review.gif",
+      "durations_ms": [
+        150,
+        150,
+        150,
+        150,
+        150,
+        280
+      ],
+      "atlas_row": 8
+    },
+    "look-directions": {
+      "frames": [
+        "assets/frames/look-directions/000.png",
+        "assets/frames/look-directions/022.5.png",
+        "assets/frames/look-directions/045.png",
+        "assets/frames/look-directions/067.5.png",
+        "assets/frames/look-directions/090.png",
+        "assets/frames/look-directions/112.5.png",
+        "assets/frames/look-directions/135.png",
+        "assets/frames/look-directions/157.5.png",
+        "assets/frames/look-directions/180.png",
+        "assets/frames/look-directions/202.5.png",
+        "assets/frames/look-directions/225.png",
+        "assets/frames/look-directions/247.5.png",
+        "assets/frames/look-directions/270.png",
+        "assets/frames/look-directions/292.5.png",
+        "assets/frames/look-directions/315.png",
+        "assets/frames/look-directions/337.5.png"
+      ],
+      "gif": "assets/gifs/look-directions.gif",
+      "durations_ms": [
+        140,
+        140,
+        140,
+        140,
+        140,
+        140,
+        140,
+        140,
+        140,
+        140,
+        140,
+        140,
+        140,
+        140,
+        140,
+        280
+      ],
+      "directions": [
+        "000",
+        "022.5",
+        "045",
+        "067.5",
+        "090",
+        "112.5",
+        "135",
+        "157.5",
+        "180",
+        "202.5",
+        "225",
+        "247.5",
+        "270",
+        "292.5",
+        "315",
+        "337.5"
+      ],
+      "atlas_rows": [
+        9,
+        10
+      ]
+    }
+  }
+}
