@@ -13,6 +13,7 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "assets"
 FRAMES_ROOT = ASSETS / "frames"
+STATE_PHASES_ROOT = ASSETS / "state-phases"
 GIF_ROOT = ASSETS / "gifs"
 STATIC_ATLAS = ASSETS / "spritesheet-static.webp"
 RUNTIME_ATLAS = ROOT / "pet" / "spritesheet.webp"
@@ -69,6 +70,10 @@ IDLE_LABELS = [
     "wave-half-lower",
     "wave-rest-return",
     "neutral-return",
+    "rest-loop",
+    "breathing-loop",
+    "rest-hold-1",
+    "rest-hold-2",
 ]
 
 LOOK_LABELS = [
@@ -153,8 +158,14 @@ def reset_directory(path: Path) -> None:
     path.mkdir(parents=True)
 
 
-def save_frames(name: str, frames: list[Image.Image], labels: list[str] | None = None) -> list[str]:
-    output_dir = FRAMES_ROOT / name
+def save_frames(
+    name: str,
+    frames: list[Image.Image],
+    labels: list[str] | None = None,
+    *,
+    root: Path = FRAMES_ROOT,
+) -> list[str]:
+    output_dir = root / name
     output_dir.mkdir(parents=True, exist_ok=True)
     outputs: list[str] = []
     for index, frame in enumerate(frames):
@@ -202,8 +213,10 @@ def transparent_gif_frame(frame: Image.Image, *, alpha_threshold: int = 64) -> I
     return paletted
 
 
-def extract_runtime_idle() -> tuple[list[Image.Image], list[int]]:
-    frames: list[Image.Image] = []
+def extract_runtime_state_phases() -> tuple[OrderedDict[str, list[Image.Image]], list[int]]:
+    phases: OrderedDict[str, list[Image.Image]] = OrderedDict(
+        [("idle", [])] + [(name, []) for name in STATE_ROWS]
+    )
     durations: list[int] = []
     with Image.open(RUNTIME_ATLAS) as runtime:
         if runtime.size != ATLAS_SIZE or not getattr(runtime, "is_animated", False):
@@ -211,11 +224,14 @@ def extract_runtime_idle() -> tuple[list[Image.Image], list[int]]:
         for index in range(runtime.n_frames):
             runtime.seek(index)
             full = runtime.convert("RGBA")
-            frames.append(full.crop((0, 0, CELL_WIDTH, CELL_HEIGHT)))
             durations.append(int(runtime.info.get("duration", 100)))
-    if len(frames) != len(IDLE_LABELS):
-        raise ValueError(f"expected {len(IDLE_LABELS)} idle phases, found {len(frames)}")
-    return frames, durations
+            phases["idle"].append(full.crop((0, 0, CELL_WIDTH, CELL_HEIGHT)))
+            for name, (row, _count) in STATE_ROWS.items():
+                top = row * CELL_HEIGHT
+                phases[name].append(full.crop((0, top, CELL_WIDTH, top + CELL_HEIGHT)))
+    if len(durations) != len(IDLE_LABELS):
+        raise ValueError(f"expected {len(IDLE_LABELS)} image-time phases, found {len(durations)}")
+    return phases, durations
 
 
 def extract_static_frames() -> tuple[dict[str, list[Image.Image]], list[Image.Image]]:
@@ -304,7 +320,7 @@ def build_all_frames_gallery(groups: OrderedDict[str, list[Image.Image]]) -> Non
     draw.text((count_x, 46), count_text, fill=ORANGE, font=count_font)
     draw.text(
         (width - margin, 126),
-        "ORIGINAL FRAMES",
+        "RUNTIME POSES",
         fill=INK,
         font=font(14, bold=True, style="mono"),
         anchor="ra",
@@ -313,7 +329,7 @@ def build_all_frames_gallery(groups: OrderedDict[str, list[Image.Image]]) -> Non
     draw.line((margin, 164, width - margin, 164), fill=ORANGE, width=5)
     draw.text(
         (margin, 184),
-        "VOL. 01   /   10 MOTION FAMILIES   /   SOURCE-FRAME INDEX",
+        "VOL. 02   /   9 × 20 STATE PHASES   /   16 GAZE POSES",
         fill=MUTED,
         font=font(14, style="mono"),
     )
@@ -341,13 +357,7 @@ def build_all_frames_gallery(groups: OrderedDict[str, list[Image.Image]]) -> Non
             fill=INK,
             font=font(24, style="display"),
         )
-        descriptor = (
-            "360° GAZE"
-            if name == "look-directions"
-            else "2.13 S LOOP"
-            if name == "idle"
-            else "STATE LOOP"
-        )
+        descriptor = "360° GAZE" if name == "look-directions" else "IMAGE-TIME LOOP"
         draw.text(
             (margin + 78, y + 68),
             f"{len(frames):02d} FRAMES  /  {descriptor}",
@@ -355,7 +365,13 @@ def build_all_frames_gallery(groups: OrderedDict[str, list[Image.Image]]) -> Non
             font=font(12, style="mono"),
         )
 
-        if len(frames) > 8:
+        if len(frames) > 16:
+            available = width - margin - frames_x
+            slot_width = available / len(frames)
+            frame_size = (66, 94)
+            frame_y = y + 15
+            index_y = y + 126
+        elif len(frames) > 8:
             available = width - margin - frames_x
             slot_width = available / len(frames)
             frame_size = (84, 102)
@@ -386,7 +402,7 @@ def build_all_frames_gallery(groups: OrderedDict[str, list[Image.Image]]) -> Non
     draw.line((margin, footer_y, width - margin, footer_y), fill=ORANGE, width=3)
     draw.text(
         (margin, footer_y + 18),
-        "CAPYBARA LULU  /  ALL SOURCE POSES PRESERVED",
+        "CAPYBARA LULU  /  SYNCHRONIZED IMAGE-TIME ARCHIVE",
         fill=GREEN,
         font=font(12, bold=True, style="mono"),
     )
@@ -405,7 +421,7 @@ def build_idle_timeline(frames: list[Image.Image], durations: list[int]) -> None
     width = 1920
     height = 950
     margin = 72
-    slot_width = (width - 2 * margin) / 8
+    slot_width = (width - 2 * margin) / 10
     row_tops = [255, 585]
     image = Image.new("RGB", (width, height), WHITE)
     draw = ImageDraw.Draw(image)
@@ -442,7 +458,7 @@ def build_idle_timeline(frames: list[Image.Image], durations: list[int]) -> None
     )
     draw.text(
         (width - margin, 125),
-        "16 PHASES  /  SEAMLESS LOOP",
+        "20 PHASES  /  SEAMLESS LOOP",
         fill=INK,
         font=font(14, bold=True, style="mono"),
         anchor="ra",
@@ -451,14 +467,14 @@ def build_idle_timeline(frames: list[Image.Image], durations: list[int]) -> None
 
     chapters = [
         (0, 4, "A / EXPRESSION"),
-        (5, 7, "B / PAW LIFT"),
-        (8, 12, "C / WAVE ARC"),
-        (13, 15, "D / RETURN"),
+        (5, 9, "B / PAW LIFT"),
+        (10, 14, "C / WAVE ARC"),
+        (15, 19, "D / RETURN & REST"),
     ]
     for start, end, label in chapters:
-        row = start // 8
-        local_start = start % 8
-        local_end = end % 8
+        row = start // 10
+        local_start = start % 10
+        local_end = end % 10
         x1 = margin + local_start * slot_width
         x2 = margin + (local_end + 1) * slot_width - 18
         y = row_tops[row]
@@ -466,8 +482,8 @@ def build_idle_timeline(frames: list[Image.Image], durations: list[int]) -> None
         draw.line((x1, y + 4, x2, y + 4), fill=GREEN, width=2)
 
     for index, frame in enumerate(frames):
-        column = index % 8
-        row = index // 8
+        column = index % 10
+        row = index // 10
         x_center = margin + column * slot_width + slot_width / 2
         y = row_tops[row]
         timeline_y = y + 36
@@ -485,7 +501,7 @@ def build_idle_timeline(frames: list[Image.Image], durations: list[int]) -> None
             anchor="ms",
         )
 
-        frame_size = (150, 166)
+        frame_size = (138, 156)
         card = frame_card(frame, frame_size).convert("RGB")
         image.paste(card, (int(x_center - frame_size[0] / 2), timeline_y + 18))
 
@@ -590,15 +606,15 @@ def build_white_look_gallery(look_frames: list[Image.Image]) -> None:
 
 
 def main() -> None:
-    reset_directory(FRAMES_ROOT)
-    reset_directory(GIF_ROOT)
-
-    idle_frames, idle_durations = extract_runtime_idle()
+    runtime_states, runtime_durations = extract_runtime_state_phases()
     states, look_frames = extract_static_frames()
 
+    reset_directory(FRAMES_ROOT)
+    reset_directory(STATE_PHASES_ROOT)
+    reset_directory(GIF_ROOT)
+
     groups: OrderedDict[str, list[Image.Image]] = OrderedDict()
-    groups["idle"] = idle_frames
-    groups.update(states)
+    groups.update(runtime_states)
     groups["look-directions"] = look_frames
 
     manifest: dict[str, object] = {
@@ -611,14 +627,16 @@ def main() -> None:
         "animations": {},
     }
 
+    idle_frames = runtime_states["idle"]
     idle_paths = save_frames("idle", idle_frames)
-    idle_gif = save_gif("idle", idle_frames, idle_durations)
+    idle_phase_paths = save_frames("idle", idle_frames, root=STATE_PHASES_ROOT)
+    idle_gif = save_gif("idle", idle_frames, runtime_durations)
     phase_manifest = {
         "phases": [
             {
                 "label": label,
                 "image": f"frames/idle/{index:02d}.png",
-                "duration_ms": idle_durations[index],
+                "duration_ms": runtime_durations[index],
             }
             for index, label in enumerate(IDLE_LABELS)
         ]
@@ -629,18 +647,22 @@ def main() -> None:
     )
     manifest["animations"]["idle"] = {
         "frames": idle_paths,
+        "runtime_phases": idle_phase_paths,
         "gif": idle_gif,
-        "durations_ms": idle_durations,
+        "durations_ms": runtime_durations,
         "labels": IDLE_LABELS,
     }
 
     for name, frames in states.items():
         frame_paths = save_frames(name, frames)
-        gif_path = save_gif(name, frames, DURATIONS[name])
+        runtime_frames = runtime_states[name]
+        runtime_paths = save_frames(name, runtime_frames, root=STATE_PHASES_ROOT)
+        gif_path = save_gif(name, runtime_frames, runtime_durations)
         manifest["animations"][name] = {
             "frames": frame_paths,
+            "runtime_phases": runtime_paths,
             "gif": gif_path,
-            "durations_ms": DURATIONS[name],
+            "durations_ms": runtime_durations,
             "atlas_row": STATE_ROWS[name][0],
         }
 
@@ -660,7 +682,7 @@ def main() -> None:
         encoding="utf-8",
     )
     build_all_frames_gallery(groups)
-    build_idle_timeline(idle_frames, idle_durations)
+    build_idle_timeline(idle_frames, runtime_durations)
     build_white_atlas_gallery()
     build_white_look_gallery(look_frames)
     print(f"Wrote {sum(len(frames) for frames in groups.values())} frames and {len(groups)} GIFs under {ASSETS}")

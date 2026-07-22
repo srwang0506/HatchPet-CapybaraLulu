@@ -2,6 +2,8 @@
 
 Use this opt-in path when a user explicitly reports slideshow-like desktop idle playback, long frozen holds, a choppy blink, or asks for higher-frequency idle motion without modifying the Codex application.
 
+If the user also requests high-phase non-idle task motion or a 12-15 visual-motion library, use `desktop-smooth-state.md` instead of layering two animated wrappers. The smooth-state path includes idle and all eight non-idle native rows on one shared WebP clock.
+
 ## Runtime model
 
 The desktop renderer selects the six idle atlas columns slowly. A smooth-idle runtime atlas moves approved idle phases into the animated WebP time axis. The default plan uses the existing six-pose idle loop:

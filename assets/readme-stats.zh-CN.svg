@@ -1,40 +1,40 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="220" viewBox="0 0 1200 220" role="img" aria-labelledby="title description">
   <title id="title">水豚噜噜项目数据</title>
-  <desc id="description">16 个灵动静止阶段、9 个任务感知状态、16 个注视方向，以及 83 张透明源帧。</desc>
+  <desc id="description">20 个同步时间相位、15 个视觉动作片段、9 个原生状态，以及 16 个注视方向。</desc>
 
   <g transform="translate(10 12)">
     <rect width="280" height="196" rx="28" fill="#fff2e5" stroke="#f5d6b7" stroke-width="2"/>
     <rect x="22" y="22" width="44" height="8" rx="4" fill="#f36a10"/>
     <circle cx="250" cy="30" r="8" fill="#7d9b2e"/>
-    <text x="22" y="105" fill="#4c2a16" font-family="Avenir Next, Arial, sans-serif" font-size="66" font-weight="800">16</text>
-    <text x="22" y="140" fill="#f36a10" font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" letter-spacing="2">灵动静止阶段</text>
-    <text x="22" y="169" fill="#795647" font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="500">完整循环 · 2.13 秒</text>
+    <text x="22" y="105" fill="#4c2a16" font-family="Avenir Next, Arial, sans-serif" font-size="66" font-weight="800">20</text>
+    <text x="22" y="140" fill="#f36a10" font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" letter-spacing="2">同步时间相位</text>
+    <text x="22" y="169" fill="#795647" font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="500">完整循环 · 1.20 秒</text>
   </g>
 
   <g transform="translate(310 12)">
     <rect width="280" height="196" rx="28" fill="#fffaf2" stroke="#f1dfc9" stroke-width="2"/>
     <rect x="22" y="22" width="44" height="8" rx="4" fill="#7d9b2e"/>
     <circle cx="250" cy="30" r="8" fill="#f36a10"/>
-    <text x="22" y="105" fill="#4c2a16" font-family="Avenir Next, Arial, sans-serif" font-size="66" font-weight="800">9</text>
-    <text x="22" y="140" fill="#7d9b2e" font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" letter-spacing="2">任务感知状态</text>
-    <text x="22" y="169" fill="#795647" font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="500">覆盖完整工作流程</text>
+    <text x="22" y="105" fill="#4c2a16" font-family="Avenir Next, Arial, sans-serif" font-size="66" font-weight="800">15</text>
+    <text x="22" y="140" fill="#7d9b2e" font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" letter-spacing="2">视觉动作片段</text>
+    <text x="22" y="169" fill="#795647" font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="500">都有名称与归属状态</text>
   </g>
 
   <g transform="translate(610 12)">
     <rect width="280" height="196" rx="28" fill="#f4f7e9" stroke="#dce6bf" stroke-width="2"/>
     <rect x="22" y="22" width="44" height="8" rx="4" fill="#7d9b2e"/>
     <circle cx="250" cy="30" r="8" fill="#f36a10"/>
-    <text x="22" y="105" fill="#4c2a16" font-family="Avenir Next, Arial, sans-serif" font-size="66" font-weight="800">16</text>
-    <text x="22" y="140" fill="#7d9b2e" font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" letter-spacing="2">顺时针注视方向</text>
-    <text x="22" y="169" fill="#795647" font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="500">每步间隔 22.5°</text>
+    <text x="22" y="105" fill="#4c2a16" font-family="Avenir Next, Arial, sans-serif" font-size="66" font-weight="800">9</text>
+    <text x="22" y="140" fill="#7d9b2e" font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" letter-spacing="2">原生触发状态</text>
+    <text x="22" y="169" fill="#795647" font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="500">对应真实桌面事件</text>
   </g>
 
   <g transform="translate(910 12)">
     <rect width="280" height="196" rx="28" fill="#fff6ec" stroke="#f2dcc5" stroke-width="2"/>
     <rect x="22" y="22" width="44" height="8" rx="4" fill="#f36a10"/>
     <circle cx="250" cy="30" r="8" fill="#7d9b2e"/>
-    <text x="22" y="105" fill="#4c2a16" font-family="Avenir Next, Arial, sans-serif" font-size="66" font-weight="800">83</text>
-    <text x="22" y="140" fill="#f36a10" font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" letter-spacing="2">透明动作源帧</text>
-    <text x="22" y="169" fill="#795647" font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="500">完整 PNG 素材开放</text>
+    <text x="22" y="105" fill="#4c2a16" font-family="Avenir Next, Arial, sans-serif" font-size="66" font-weight="800">16</text>
+    <text x="22" y="140" fill="#f36a10" font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" letter-spacing="2">顺时针注视方向</text>
+    <text x="22" y="169" fill="#795647" font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="500">每步间隔 22.5°</text>
   </g>
 </svg>

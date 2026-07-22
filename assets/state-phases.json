@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "description": "Twenty image-time phases shared by all nine native Codex pet states.",
+  "phases": [
+    {"label": "t00", "duration_ms": 60},
+    {"label": "t01", "duration_ms": 60},
+    {"label": "t02", "duration_ms": 60},
+    {"label": "t03", "duration_ms": 60},
+    {"label": "t04", "duration_ms": 60},
+    {"label": "t05", "duration_ms": 60},
+    {"label": "t06", "duration_ms": 60},
+    {"label": "t07", "duration_ms": 60},
+    {"label": "t08", "duration_ms": 60},
+    {"label": "t09", "duration_ms": 60},
+    {"label": "t10", "duration_ms": 60},
+    {"label": "t11", "duration_ms": 60},
+    {"label": "t12", "duration_ms": 60},
+    {"label": "t13", "duration_ms": 60},
+    {"label": "t14", "duration_ms": 60},
+    {"label": "t15", "duration_ms": 60},
+    {"label": "t16", "duration_ms": 60},
+    {"label": "t17", "duration_ms": 60},
+    {"label": "t18", "duration_ms": 60},
+    {"label": "t19", "duration_ms": 60}
+  ],
+  "motion_clips": [
+    {"id": "idle-breathe", "state": "idle", "phase_range": [0, 1]},
+    {"id": "idle-blink", "state": "idle", "phase_range": [2, 2]},
+    {"id": "idle-mouth", "state": "idle", "phase_range": [3, 4]},
+    {"id": "idle-single-paw-wave", "state": "idle", "phase_range": [5, 15]},
+    {"id": "run-right", "state": "running-right", "phase_range": [0, 19]},
+    {"id": "run-left", "state": "running-left", "phase_range": [0, 19]},
+    {"id": "greeting", "state": "waving", "phase_range": [0, 19]},
+    {"id": "jump", "state": "jumping", "phase_range": [0, 19]},
+    {"id": "blocked-reaction", "state": "failed", "phase_range": [0, 19]},
+    {"id": "needs-input", "state": "waiting", "phase_range": [0, 19]},
+    {"id": "work-alternating-type-a", "state": "running", "phase_range": [0, 4]},
+    {"id": "work-blink", "state": "running", "phase_range": [5, 9]},
+    {"id": "work-read-screen", "state": "running", "phase_range": [10, 14]},
+    {"id": "work-alternating-type-b", "state": "running", "phase_range": [15, 19]},
+    {"id": "ready-review", "state": "review", "phase_range": [0, 19]}
+  ],
+  "states": {
+    "idle": {
+      "image_sequence": [
+        "state-phases/idle/00.png",
+        "state-phases/idle/01.png",
+        "state-phases/idle/02.png",
+        "state-phases/idle/03.png",
+        "state-phases/idle/04.png",
+        "state-phases/idle/05.png",
+        "state-phases/idle/06.png",
+        "state-phases/idle/07.png",
+        "state-phases/idle/08.png",
+        "state-phases/idle/09.png",
+        "state-phases/idle/10.png",
+        "state-phases/idle/11.png",
+        "state-phases/idle/12.png",
+        "state-phases/idle/13.png",
+        "state-phases/idle/14.png",
+        "state-phases/idle/15.png",
+        "state-phases/idle/16.png",
+        "state-phases/idle/17.png",
+        "state-phases/idle/18.png",
+        "state-phases/idle/19.png"
+      ]
+    },
+    "running-right": {
+      "atlas_sequence": [0, 0, 0, 1, 1, 2, 2, 3, 3, 3, 4, 4, 5, 5, 6, 6, 6, 7, 7, 7]
+    },
+    "running-left": {
+      "atlas_sequence": [0, 0, 0, 1, 1, 2, 2, 3, 3, 3, 4, 4, 5, 5, 6, 6, 6, 7, 7, 7]
+    },
+    "waving": {
+      "atlas_sequence": [0, 0, 1, 1, 2, 2, 3, 3, 0, 0, 1, 1, 2, 2, 3, 3, 0, 1, 2, 3]
+    },
+    "jumping": {
+      "atlas_sequence": [0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4]
+    },
+    "failed": {
+      "atlas_sequence": [0, 0, 0, 1, 1, 2, 2, 3, 3, 3, 4, 4, 5, 5, 6, 6, 6, 7, 7, 7]
+    },
+    "waiting": {
+      "atlas_sequence": [0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 5]
+    },
+    "running": {
+      "image_sequence": [
+        "state-phases/running/00.png",
+        "state-phases/running/01.png",
+        "state-phases/running/02.png",
+        "state-phases/running/03.png",
+        "state-phases/running/04.png",
+        "state-phases/running/05.png",
+        "state-phases/running/06.png",
+        "state-phases/running/07.png",
+        "state-phases/running/08.png",
+        "state-phases/running/09.png",
+        "state-phases/running/10.png",
+        "state-phases/running/11.png",
+        "state-phases/running/12.png",
+        "state-phases/running/13.png",
+        "state-phases/running/14.png",
+        "state-phases/running/15.png",
+        "state-phases/running/16.png",
+        "state-phases/running/17.png",
+        "state-phases/running/18.png",
+        "state-phases/running/19.png"
+      ]
+    },
+    "review": {
+      "atlas_sequence": [0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 5]
+    }
+  }
+}

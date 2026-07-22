@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <img src="assets/readme-stats.svg" alt="16 expressive idle phases, 9 task-aware states, 16 look directions, and 83 transparent source frames" width="100%">
+  <img src="assets/readme-stats.svg" alt="20 synchronized image-time phases, 15 named visual motions, 9 native states, and 16 look directions" width="100%">
 </p>
 
 <p align="center">
@@ -25,15 +25,15 @@ Capybara Lulu is a custom pet pack for the ChatGPT desktop app's Codex experienc
 > [!TIP]
 > **Ready to meet Lulu?** Run `python3 scripts/install.py`, restart the ChatGPT desktop app, then choose **水豚噜噜** in **Settings → Pets**.
 
-The shipped `pet/spritesheet.webp` is an animated 8 × 11 atlas. Its 16-frame, 2.13-second image-time idle loop prevents the long frozen holds caused by the desktop renderer's slower sprite-column clock. The static atlas remains available for QA, editing, and reduced-motion fallback.
+The shipped `pet/spritesheet.webp` is an animated 8 × 11 atlas with 20 synchronized image-time phases per native state. Its 1.20-second global loop prevents long frozen holds from the desktop renderer's slower sprite-column clock. Fifteen named visual motions are distributed across the nine real Codex triggers; the static atlas remains available for QA, editing, and reduced-motion fallback.
 
 | Lulu's behavior | What ships |
 | :--- | :--- |
-| 🌿 **Expressive idle** | 16 timed phases: rest, breath, blink, mouth open/close, a single-paw wave, and a soft neutral return. |
-| 💻 **Task awareness** | Dedicated working, waiting, ready-for-review, and blocked reactions that remain active with the real task state. |
+| 🌿 **Expressive idle** | 20 image-time phases: rest, breath, blink, mouth open/close, a single-paw wave, and a soft neutral return. |
+| 💻 **Task awareness** | Dedicated working, waiting, ready-for-review, and blocked reactions. Working alone contains four connected micro-cycles: typing, blink, read-screen, and alternate typing. |
 | 🐾 **Physical interaction** | A pointer-hover jump plus alternating run cycles while Lulu is dragged left or right. |
 | 👀 **Directional gaze** | 16 clockwise look poses at exact 22.5° intervals, with a neutral dead zone that returns to idle. |
-| 🎞️ **Reproducible source** | 83 transparent PNG frames, 10 GIF previews, a deterministic gallery builder, validators, and the full `hatch-pet` workflow. |
+| 🎞️ **Reproducible source** | 180 transparent runtime-phase PNGs, 87 native/look source PNGs, 10 GIF previews, deterministic builders, validators, and the full `hatch-pet` workflow. |
 
 ## 🎬 Motion library
 
@@ -42,81 +42,81 @@ Each motion keeps its original playback speed. The cards below show the live pre
 <p>
   <img src="assets/gifs/idle.gif" alt="Lulu expressive idle" width="124" align="left">
   <strong>🌿 Expressive idle</strong><br>
-  <sub><code>idle</code> · 16 frames · 2.13 s</sub><br><br>
+  <sub><code>idle</code> · 20 phases · 1.20 s</sub><br><br>
   Appears when no task status is active and the pointer is in the neutral dead zone. The image-time loop adds breathing, blink, mouth movement, a one-paw wave, and a neutral return.<br>
-  <a href="assets/frames/idle/">Open all 16 source frames →</a>
+  <a href="assets/state-phases/idle/">Open all 20 runtime phases →</a>
 </p>
 <br clear="left">
 
 <p>
   <img src="assets/gifs/running-right.gif" alt="Lulu running right" width="124" align="left">
   <strong>➡️ Run right</strong><br>
-  <sub><code>running-right</code> · 8 frames · 1.06 s</sub><br><br>
+  <sub><code>running-right</code> · 20 phases · 1.20 s</sub><br><br>
   Appears while the floating pet is dragged toward screen-right.<br>
-  <a href="assets/frames/running-right/">Open all 8 source frames →</a>
+  <a href="assets/state-phases/running-right/">Open all 20 runtime phases →</a>
 </p>
 <br clear="left">
 
 <p>
   <img src="assets/gifs/running-left.gif" alt="Lulu running left" width="124" align="left">
   <strong>⬅️ Run left</strong><br>
-  <sub><code>running-left</code> · 8 frames · 1.06 s</sub><br><br>
+  <sub><code>running-left</code> · 20 phases · 1.20 s</sub><br><br>
   Appears while the floating pet is dragged toward screen-left.<br>
-  <a href="assets/frames/running-left/">Open all 8 source frames →</a>
+  <a href="assets/state-phases/running-left/">Open all 20 runtime phases →</a>
 </p>
 <br clear="left">
 
 <p>
   <img src="assets/gifs/waving.gif" alt="Lulu greeting" width="124" align="left">
   <strong>👋 Greeting</strong><br>
-  <sub><code>waving</code> · 4 frames · 0.70 s</sub><br><br>
+  <sub><code>waving</code> · 20 phases · 1.20 s</sub><br><br>
   Appears as the first-awake greeting after Lulu is woken.<br>
-  <a href="assets/frames/waving/">Open all 4 source frames →</a>
+  <a href="assets/state-phases/waving/">Open all 20 runtime phases →</a>
 </p>
 <br clear="left">
 
 <p>
   <img src="assets/gifs/jumping.gif" alt="Lulu jumping" width="124" align="left">
   <strong>✨ Jump</strong><br>
-  <sub><code>jumping</code> · 5 frames · 0.84 s</sub><br><br>
+  <sub><code>jumping</code> · 20 phases · 1.20 s</sub><br><br>
   Appears when the pointer enters or hovers over Lulu.<br>
-  <a href="assets/frames/jumping/">Open all 5 source frames →</a>
+  <a href="assets/state-phases/jumping/">Open all 20 runtime phases →</a>
 </p>
 <br clear="left">
 
 <p>
   <img src="assets/gifs/failed.gif" alt="Lulu blocked reaction" width="124" align="left">
   <strong>🌧️ Blocked</strong><br>
-  <sub><code>failed</code> · 8 frames · 1.22 s</sub><br><br>
+  <sub><code>failed</code> · 20 phases · 1.20 s</sub><br><br>
   Appears when a chat fails, is blocked, or encounters a system error.<br>
-  <a href="assets/frames/failed/">Open all 8 source frames →</a>
+  <a href="assets/state-phases/failed/">Open all 20 runtime phases →</a>
 </p>
 <br clear="left">
 
 <p>
   <img src="assets/gifs/waiting.gif" alt="Lulu waiting for input" width="124" align="left">
   <strong>🙋 Needs input</strong><br>
-  <sub><code>waiting</code> · 6 frames · 1.01 s</sub><br><br>
+  <sub><code>waiting</code> · 20 phases · 1.20 s</sub><br><br>
   Appears when Codex needs approval, an answer, or another user decision.<br>
-  <a href="assets/frames/waiting/">Open all 6 source frames →</a>
+  <a href="assets/state-phases/waiting/">Open all 20 runtime phases →</a>
 </p>
 <br clear="left">
 
 <p>
   <img src="assets/gifs/running.gif" alt="Lulu working on a computer" width="124" align="left">
   <strong>💻 Working</strong><br>
-  <sub><code>running</code> · 6 frames · 0.82 s</sub><br><br>
-  Appears while a chat is actively working. Lulu uses the computer instead of running in place.<br>
-  <a href="assets/frames/running/">Open all 6 source frames →</a>
+  <sub><code>running</code> · 20 unique phases · 1.20 s</sub><br><br>
+  Appears while a chat is actively working. Lulu types, blinks, reads the screen, and alternates paws; both arms remain continuously attached in every phase.<br>
+  <a href="assets/state-phases/running/">Open all 20 runtime phases →</a>
 </p>
 <br clear="left">
 
 <p>
   <img src="assets/gifs/review.gif" alt="Lulu reviewing output" width="124" align="left">
   <strong>✅ Ready / review</strong><br>
-  <sub><code>review</code> · 6 frames · 1.03 s</sub><br><br>
+  <sub><code>review</code> · 20 phases · 1.20 s</sub><br><br>
   Appears when a chat has completed and has unread activity ready to inspect.<br>
-  <a href="assets/frames/review/">Open all 6 source frames →</a>
+  <a href="assets/state-phases/review/">Open all 20 runtime phases →</a>
 </p>
 <br clear="left">
 
@@ -132,11 +132,11 @@ Each motion keeps its original playback speed. The cards below show the live pre
 > [!NOTE]
 > When several chats are active, the official priority is **Needs input → Blocked → Ready → Running**. Selecting Lulu returns you to ChatGPT; selecting an item in the activity tray opens that chat. See the official [Pets documentation](https://learn.chatgpt.com/docs/pets?surface=app).
 
-README GIFs retain transparent backgrounds so Lulu sits naturally on light and dark GitHub themes. The overview sheets use a pure white editorial canvas; all 83 source PNGs and installable atlases retain their original transparency.
+README GIFs retain transparent backgrounds so Lulu sits naturally on light and dark GitHub themes. The overview sheets use a pure white editorial canvas; all runtime-phase and native source PNGs retain their original transparency.
 
 ## 🖼️ Every animation frame
 
-All 83 shipped frames are available as individual transparent PNGs under [`assets/frames`](assets/frames/). The machine-readable timing and direction map lives in [`assets/frames/manifest.json`](assets/frames/manifest.json).
+All 180 state phases are available as individual transparent PNGs under [`assets/state-phases`](assets/state-phases/), with 16 direction frames completing the 196-frame runtime gallery below. The 87 native/static source cells remain under [`assets/frames`](assets/frames/). Timing, clip ownership, and phase sources live in [`assets/state-phases.json`](assets/state-phases.json) and [`assets/frames/manifest.json`](assets/frames/manifest.json).
 
 <p align="center">
   <img src="assets/all-frames.png" alt="All Capybara Lulu animation frames" width="100%">
@@ -144,7 +144,7 @@ All 83 shipped frames are available as individual transparent PNGs under [`asset
 
 ### 🌿 Expressive idle timeline
 
-The idle loop is deliberately dense: it returns through lower transition poses rather than snapping from a raised paw to neutral. The viewer-right paw waves; the viewer-left paw stays lowered.
+The 20-phase idle loop is deliberately dense: it returns through lower transition poses rather than snapping from a raised paw to neutral. The viewer-right paw waves; the viewer-left paw stays lowered.
 
 <p align="center">
   <img src="assets/idle-frames.png" alt="Capybara Lulu expressive idle frame timeline" width="100%">
@@ -264,7 +264,7 @@ The bundled [`hatch-pet`](hatch-pet/) workflow is the Codex authoring and QA too
 
 ## 🧩 Optional: install the authoring skill in Codex
 
-The repository includes the upgraded `hatch-pet` skill with smooth image-time idle packaging, expressive phase manifests, 9-state QA, and 16-direction validation.
+The repository includes the upgraded `hatch-pet` skill with synchronized 16–24 phase native-state packaging, 12–15 visual-motion libraries, complete-row limb QA, 9-state validation, and 16-direction validation.
 
 ```bash
 mkdir -p ~/.codex/skills/hatch-pet
@@ -275,13 +275,13 @@ Restart Codex or reload skills, then invoke `$hatch-pet` when creating or repair
 
 ## ♿ Reduced motion
 
-Official pets respect the operating system reduced-motion preference. This project's smooth idle uses the animated WebP image clock, which can continue even when JavaScript sprite timers are reduced. If continuous idle motion is not appropriate, replace the installed runtime with the static QA atlas:
+Official pets respect the operating system reduced-motion preference. This project's smooth state runtime uses the animated WebP image clock, which can continue even when JavaScript sprite timers are reduced. If continuous image-time motion is not appropriate, replace the installed runtime with the static QA atlas:
 
 ```bash
 cp assets/spritesheet-static.webp ~/.codex/pets/capybara-lulu/spritesheet.webp
 ```
 
-Restart the app afterward. The task states and 16 look directions remain available; only the expressive image-time idle wrapper is removed.
+Restart the app afterward. The nine task states and 16 look directions remain available; only the synchronized image-time wrapper is removed.
 
 ## 🧪 Development and validation
 
@@ -309,10 +309,18 @@ python hatch-pet/scripts/validate_atlas.py \
   --allow-animated \
   --allow-transparent-rgb-residue
 
-python hatch-pet/scripts/validate_smooth_idle_webp.py \
+python hatch-pet/scripts/validate_smooth_state_webp.py \
   pet/spritesheet.webp \
   --source-atlas assets/spritesheet-static.webp \
-  --phase-manifest assets/idle-phases.json
+  --phase-manifest assets/state-phases.json \
+  --require-all-states \
+  --min-motion-clips 12 \
+  --max-motion-clips 15
+
+python hatch-pet/scripts/measure_motion_phase_continuity.py \
+  assets/state-phases/running \
+  --expected-count 20 \
+  --chroma-key '#FF00FF'
 
 python -m unittest discover -s hatch-pet/tests -v
 ```
@@ -321,16 +329,17 @@ Acceptance targets:
 
 - static and runtime atlases are exactly 1536 × 2288 RGBA;
 - `spriteVersionNumber` remains `2`;
-- runtime contains 16 frames totaling 2130 ms and loops indefinitely;
-- all renderer-selectable idle columns remain phase-synchronized;
-- rows 1–10 are render-identical across every runtime frame;
-- no eyebrows, tail, extra limbs, limb switching, gait reversal, or baseline pop appears.
+- runtime contains 20 phases totaling 1200 ms and loops indefinitely;
+- all renderer-selectable columns in all nine native rows remain phase-synchronized;
+- both look rows remain render-identical to the static QA atlas;
+- all 15 named visual motions remain mapped to real native triggers;
+- no eyebrows, tail, detached or extra limbs, limb switching, gait reversal, or baseline pop appears.
 
 ## 🗂️ Repository layout
 
 ```text
 capybara-lulu/
-├── assets/                 # teaser, avatar, GIFs, 83 PNG frames, QA sheets
+├── assets/                 # teaser, avatar, GIFs, 267 transparent PNGs, QA sheets
 ├── hatch-pet/              # authoring skill, deterministic tools, references, tests
 ├── pet/                    # install-ready Codex package
 ├── scripts/                # installer and gallery builder

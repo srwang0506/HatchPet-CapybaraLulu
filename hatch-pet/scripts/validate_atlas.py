@@ -143,7 +143,7 @@ def main() -> None:
     parser.add_argument(
         "--allow-animated",
         action="store_true",
-        help="structurally validate frame 0; also run validate_smooth_idle_webp.py on the complete animation",
+        help="structurally validate frame 0; also run the matching smooth-idle or smooth-state validator on the complete animation",
     )
     parser.add_argument("--require-v2", action="store_true")
     args = parser.parse_args()
@@ -190,7 +190,7 @@ def main() -> None:
     if source_is_animated:
         message = (
             f"atlas is animated with {source_frame_count} frames; validate_atlas.py checks frame 0 only, "
-            "so the complete file also requires validate_smooth_idle_webp.py"
+            "so the complete file also requires the matching smooth-idle or smooth-state validator"
         )
         if args.allow_animated:
             warnings.append(message)
