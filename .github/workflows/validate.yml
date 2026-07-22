@@ -48,12 +48,15 @@ jobs:
           --allow-animated
           --allow-transparent-rgb-residue
 
-      - name: Validate complete expressive idle loop
+      - name: Validate synchronized native-state runtime
         run: >-
-          python hatch-pet/scripts/validate_smooth_idle_webp.py
+          python hatch-pet/scripts/validate_smooth_state_webp.py
           pet/spritesheet.webp
           --source-atlas assets/spritesheet-static.webp
-          --phase-manifest assets/idle-phases.json
+          --phase-manifest assets/state-phases.json
+          --require-all-states
+          --min-motion-clips 12
+          --max-motion-clips 15
 
       - name: Run hatch-pet regression tests
         run: python -m unittest discover -s hatch-pet/tests -v
