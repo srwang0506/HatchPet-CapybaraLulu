@@ -137,13 +137,6 @@ Both travel directions use 20 distinct poses split into two complete 10-phase ga
   <img src="assets/directional-gait.png" alt="Capybara Lulu 20-phase right and left running gait study" width="100%">
 </p>
 
-<p align="center">
-  <img src="assets/gifs/running-left.gif" alt="Capybara Lulu's final leftward running loop" width="190">
-  <img src="assets/gifs/running-right.gif" alt="Capybara Lulu's final rightward running loop" width="190">
-</p>
-
-<p align="center"><sub>Two 0.80-second gaits · same 20-phase clock · exact framewise mirror</sub></p>
-
 > [!NOTE]
 > When several chats are active, the official priority is **Needs input → Blocked → Ready → Running**. Selecting Lulu returns you to ChatGPT; selecting an item in the activity tray opens that chat. See the official [Pets documentation](https://learn.chatgpt.com/docs/pets?surface=app).
 
