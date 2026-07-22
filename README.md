@@ -27,16 +27,6 @@ Capybara Lulu is a custom pet pack for the ChatGPT desktop app's Codex experienc
 
 The shipped `pet/spritesheet.webp` is an animated 8 × 11 atlas with 20 synchronized image-time phases per native state. The shared clock remains 1.60 seconds, while each directional run fits two complete 0.80-second gait cycles into that timeline so Lulu travels briskly without speeding up idle, waving, or computer work. Fifteen named visual motions are distributed across the nine real Codex triggers; the static atlas remains available for QA, editing, and reduced-motion fallback.
 
-<p align="center">
-  <img src="assets/gifs/idle.gif" alt="Lulu breathing, blinking, and waving" width="132">
-  <img src="assets/gifs/running-left.gif" alt="Lulu running toward screen-left" width="132">
-  <img src="assets/gifs/running-right.gif" alt="Lulu running toward screen-right" width="132">
-  <img src="assets/gifs/running.gif" alt="Lulu working on her computer" width="132">
-  <img src="assets/gifs/look-directions.gif" alt="Lulu following the pointer" width="132">
-</p>
-
-<p align="center"><sub>Idle companion · left and right travel · Codex work · pointer attention</sub></p>
-
 | Lulu's behavior | What ships |
 | :--- | :--- |
 | 🌿 **Expressive idle** | 20 image-time phases: rest, breath, blink, mouth open/close, a single-paw wave, and a soft neutral return. |
