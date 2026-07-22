@@ -10,22 +10,11 @@
   <a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a>
 </p>
 
-<table>
-  <tr>
-    <td align="center" width="25%"><strong>16</strong><br><sub>EXPRESSIVE IDLE PHASES</sub></td>
-    <td align="center" width="25%"><strong>9</strong><br><sub>TASK-AWARE STATES</sub></td>
-    <td align="center" width="25%"><strong>16</strong><br><sub>LOOK DIRECTIONS</sub></td>
-    <td align="center" width="25%"><strong>83</strong><br><sub>TRANSPARENT SOURCE FRAMES</sub></td>
-  </tr>
-</table>
-
-<p align="center"><sub>Codex Pet ready &nbsp;·&nbsp; Apache-2.0 &nbsp;·&nbsp; Source-complete &nbsp;·&nbsp; Deterministically validated</sub></p>
-
 <p align="center">
   <img src="assets/lulu-in-motion.png" alt="Lulu in Motion — Capybara Lulu running, jumping, waving, working, waiting, and reviewing" width="100%">
 </p>
 
-### 🧡 Meet Lulu
+## 🧡 Meet Lulu
 
 Capybara Lulu is a custom pet pack for the ChatGPT desktop app's Codex experience. Lulu breathes, blinks, opens her mouth, and waves with one paw while idle; runs when dragged; follows the pointer; and reacts when Codex is working, waiting for input, ready for review, or blocked.
 
@@ -34,36 +23,112 @@ Capybara Lulu is a custom pet pack for the ChatGPT desktop app's Codex experienc
 
 The shipped `pet/spritesheet.webp` is an animated 8 × 11 atlas. Its 16-frame, 2.13-second image-time idle loop prevents the long frozen holds caused by the desktop renderer's slower sprite-column clock. The static atlas remains available for QA, editing, and reduced-motion fallback.
 
-| Capability | What is included |
-| --- | --- |
-| Expressive idle | 16 timed phases: rest, breath, blink, mouth open/close, a single-paw wave, and a neutral return |
-| Task awareness | Dedicated `running`, `waiting`, `review`, and `failed` reactions |
-| Physical interaction | Pointer hover jump plus alternating run cycles during horizontal drag |
-| Directional gaze | 16 clockwise look poses at 22.5° intervals |
-| Reproducible source | 83 extracted PNG frames, 10 GIF previews, a deterministic gallery builder, validators, and the upgraded `hatch-pet` workflow |
+- 🌿 **Expressive at rest.** Breathing, blinking, mouth movement, a one-paw wave, and a soft neutral return share one seamless idle timeline.
+- 💻 **Aware of the task.** Working, waiting, review, and blocked states each have their own readable reaction.
+- 🐾 **Responsive on the desktop.** Lulu jumps on hover and alternates her gait while being dragged left or right.
+- 👀 **Able to follow you.** Sixteen clockwise gaze poses cover the full pointer circle in 22.5° steps.
+- 🎞️ **Complete behind the scenes.** All 83 transparent PNG frames, GIF previews, build tools, and validators are included.
 
-### 🎬 Animation and trigger map
+## 🎬 Motion library
 
-These are the current Codex desktop mappings. Codex owns state transitions and may refine dwell times in later app builds.
+Each motion keeps its original playback speed. The cards below show the live preview, the state name used by Codex, the trigger, and a direct route to every source frame.
 
-| Animation | Preview | When Codex triggers it | Frames |
-| --- | --- | --- | ---: |
-| **Expressive idle** (`idle`) | <img src="assets/gifs/idle.gif" alt="Lulu expressive idle" width="116"> | No active status and the pointer is in the neutral dead zone. The WebP loop adds breathing, blink, mouth movement, and a one-paw wave. | [16 · 2.13 s](assets/frames/idle/) |
-| **Run right** (`running-right`) | <img src="assets/gifs/running-right.gif" alt="Lulu running right" width="116"> | The floating pet is dragged to screen-right. | [8 · 1.06 s](assets/frames/running-right/) |
-| **Run left** (`running-left`) | <img src="assets/gifs/running-left.gif" alt="Lulu running left" width="116"> | The floating pet is dragged to screen-left. | [8 · 1.06 s](assets/frames/running-left/) |
-| **Greeting** (`waving`) | <img src="assets/gifs/waving.gif" alt="Lulu greeting" width="116"> | The first-awake greeting after the pet is woken. | [4 · 0.70 s](assets/frames/waving/) |
-| **Jump** (`jumping`) | <img src="assets/gifs/jumping.gif" alt="Lulu jumping" width="116"> | The pointer enters or hovers over the pet. | [5 · 0.84 s](assets/frames/jumping/) |
-| **Blocked** (`failed`) | <img src="assets/gifs/failed.gif" alt="Lulu blocked reaction" width="116"> | A chat fails, is blocked, or encounters a system error. | [8 · 1.22 s](assets/frames/failed/) |
-| **Needs input** (`waiting`) | <img src="assets/gifs/waiting.gif" alt="Lulu waiting" width="116"> | A chat needs approval, an answer, or another user decision. | [6 · 1.01 s](assets/frames/waiting/) |
-| **Working** (`running`) | <img src="assets/gifs/running.gif" alt="Lulu working on a computer" width="116"> | A chat is actively working. Lulu uses the computer instead of running in place. | [6 · 0.82 s](assets/frames/running/) |
-| **Ready / review** (`review`) | <img src="assets/gifs/review.gif" alt="Lulu reviewing output" width="116"> | A chat has completed and has unread activity ready to inspect. | [6 · 1.03 s](assets/frames/review/) |
-| **Look around** (rows 9–10) | <img src="assets/gifs/look-directions.gif" alt="Lulu looking in 16 directions" width="116"> | The pointer direction while Lulu is idle, working, or greeting; neutral/front falls back to idle. | [16 directions](assets/frames/look-directions/) |
+<p>
+  <img src="assets/gifs/idle.gif" alt="Lulu expressive idle" width="124" align="left">
+  <strong>🌿 Expressive idle</strong><br>
+  <sub><code>idle</code> · 16 frames · 2.13 s</sub><br><br>
+  Appears when no task status is active and the pointer is in the neutral dead zone. The image-time loop adds breathing, blink, mouth movement, a one-paw wave, and a neutral return.<br>
+  <a href="assets/frames/idle/">Open all 16 source frames →</a>
+</p>
+<br clear="left">
 
-When several chats are active, the official pet priority is **Needs input → Blocked → Ready → Running**. Selecting Lulu returns you to ChatGPT; selecting an item in the activity tray opens that chat. See the official [Pets documentation](https://learn.chatgpt.com/docs/pets?surface=app).
+<p>
+  <img src="assets/gifs/running-right.gif" alt="Lulu running right" width="124" align="left">
+  <strong>➡️ Run right</strong><br>
+  <sub><code>running-right</code> · 8 frames · 1.06 s</sub><br><br>
+  Appears while the floating pet is dragged toward screen-right.<br>
+  <a href="assets/frames/running-right/">Open all 8 source frames →</a>
+</p>
+<br clear="left">
+
+<p>
+  <img src="assets/gifs/running-left.gif" alt="Lulu running left" width="124" align="left">
+  <strong>⬅️ Run left</strong><br>
+  <sub><code>running-left</code> · 8 frames · 1.06 s</sub><br><br>
+  Appears while the floating pet is dragged toward screen-left.<br>
+  <a href="assets/frames/running-left/">Open all 8 source frames →</a>
+</p>
+<br clear="left">
+
+<p>
+  <img src="assets/gifs/waving.gif" alt="Lulu greeting" width="124" align="left">
+  <strong>👋 Greeting</strong><br>
+  <sub><code>waving</code> · 4 frames · 0.70 s</sub><br><br>
+  Appears as the first-awake greeting after Lulu is woken.<br>
+  <a href="assets/frames/waving/">Open all 4 source frames →</a>
+</p>
+<br clear="left">
+
+<p>
+  <img src="assets/gifs/jumping.gif" alt="Lulu jumping" width="124" align="left">
+  <strong>✨ Jump</strong><br>
+  <sub><code>jumping</code> · 5 frames · 0.84 s</sub><br><br>
+  Appears when the pointer enters or hovers over Lulu.<br>
+  <a href="assets/frames/jumping/">Open all 5 source frames →</a>
+</p>
+<br clear="left">
+
+<p>
+  <img src="assets/gifs/failed.gif" alt="Lulu blocked reaction" width="124" align="left">
+  <strong>🌧️ Blocked</strong><br>
+  <sub><code>failed</code> · 8 frames · 1.22 s</sub><br><br>
+  Appears when a chat fails, is blocked, or encounters a system error.<br>
+  <a href="assets/frames/failed/">Open all 8 source frames →</a>
+</p>
+<br clear="left">
+
+<p>
+  <img src="assets/gifs/waiting.gif" alt="Lulu waiting for input" width="124" align="left">
+  <strong>🙋 Needs input</strong><br>
+  <sub><code>waiting</code> · 6 frames · 1.01 s</sub><br><br>
+  Appears when Codex needs approval, an answer, or another user decision.<br>
+  <a href="assets/frames/waiting/">Open all 6 source frames →</a>
+</p>
+<br clear="left">
+
+<p>
+  <img src="assets/gifs/running.gif" alt="Lulu working on a computer" width="124" align="left">
+  <strong>💻 Working</strong><br>
+  <sub><code>running</code> · 6 frames · 0.82 s</sub><br><br>
+  Appears while a chat is actively working. Lulu uses the computer instead of running in place.<br>
+  <a href="assets/frames/running/">Open all 6 source frames →</a>
+</p>
+<br clear="left">
+
+<p>
+  <img src="assets/gifs/review.gif" alt="Lulu reviewing output" width="124" align="left">
+  <strong>✅ Ready / review</strong><br>
+  <sub><code>review</code> · 6 frames · 1.03 s</sub><br><br>
+  Appears when a chat has completed and has unread activity ready to inspect.<br>
+  <a href="assets/frames/review/">Open all 6 source frames →</a>
+</p>
+<br clear="left">
+
+<p>
+  <img src="assets/gifs/look-directions.gif" alt="Lulu looking in 16 directions" width="124" align="left">
+  <strong>👀 Look around</strong><br>
+  <sub>rows 9–10 · 16 clockwise directions</sub><br><br>
+  Follows the pointer while Lulu is idle, working, or greeting. The neutral/front dead zone falls back to the expressive idle.<br>
+  <a href="assets/frames/look-directions/">Open all 16 direction frames →</a>
+</p>
+<br clear="left">
+
+> [!NOTE]
+> When several chats are active, the official priority is **Needs input → Blocked → Ready → Running**. Selecting Lulu returns you to ChatGPT; selecting an item in the activity tray opens that chat. See the official [Pets documentation](https://learn.chatgpt.com/docs/pets?surface=app).
 
 README GIFs retain transparent backgrounds so Lulu sits naturally on light and dark GitHub themes. The overview sheets use a pure white editorial canvas; all 83 source PNGs and installable atlases retain their original transparency.
 
-### 🖼️ Every animation frame
+## 🖼️ Every animation frame
 
 All 83 shipped frames are available as individual transparent PNGs under [`assets/frames`](assets/frames/). The machine-readable timing and direction map lives in [`assets/frames/manifest.json`](assets/frames/manifest.json).
 
@@ -71,7 +136,7 @@ All 83 shipped frames are available as individual transparent PNGs under [`asset
   <img src="assets/all-frames.png" alt="All Capybara Lulu animation frames" width="100%">
 </p>
 
-#### 🌿 Expressive idle timeline
+### 🌿 Expressive idle timeline
 
 The idle loop is deliberately dense: it returns through lower transition poses rather than snapping from a raised paw to neutral. The viewer-right paw waves; the viewer-left paw stays lowered.
 
@@ -79,7 +144,7 @@ The idle loop is deliberately dense: it returns through lower transition poses r
   <img src="assets/idle-frames.png" alt="Capybara Lulu expressive idle frame timeline" width="100%">
 </p>
 
-#### 👀 Sprite atlas and gaze QA
+### 👀 Sprite atlas and gaze QA
 
 <details>
 <summary>🧩 Open the full 8 × 11 sprite atlas contact sheet</summary>
@@ -99,9 +164,9 @@ The idle loop is deliberately dense: it returns through lower transition poses r
 
 </details>
 
-### 🐾 Install in Codex
+## 🐾 Install in Codex
 
-#### ⚡ One-command local install
+### ⚡ One-command local install
 
 Download or clone the repository, then run this from the project root:
 
@@ -117,7 +182,7 @@ The installer:
 
 Use `python3 scripts/install.py --no-select` if you only want to stage the pet. Fully quit and reopen the ChatGPT desktop app after installation because the custom-pet list is process-cached.
 
-#### 🧰 Manual install
+### 🧰 Manual install
 
 macOS and Linux:
 
@@ -143,7 +208,7 @@ If the current client does not select Lulu through the UI, add this to `~/.codex
 selected-avatar-id = "custom:capybara-lulu"
 ```
 
-#### 🔁 Keep task animations looping at their original speed (macOS, optional)
+### 🔁 Keep task animations looping at their original speed (macOS, optional)
 
 The desktop renderer normally plays a non-idle row three times and then falls back to idle, even when Codex is still working or waiting. This opt-in patch keeps the selected action repeating for the full lifetime of its real desktop state. It does **not** slow frames down, delay state changes, or keep a completed working state alive.
 
@@ -156,11 +221,11 @@ node hatch-pet/scripts/patch_codex_pet_playback.mjs --apply /Applications/ChatGP
 
 Fully quit and reopen ChatGPT afterward. Application updates may replace the renderer patch; rerun `--check` after an update. The command output includes `backupDir` for an exact restore if needed.
 
-#### ⌨️ Codex CLI
+### ⌨️ Codex CLI
 
 In an interactive Codex CLI session, enter `/pets` or `/pet` and choose **水豚噜噜**. Terminal pets require iTerm2 3.6+, Kitty graphics, or Sixel support and are unavailable inside tmux and Zellij. The IDE extension does not provide a pet picker or floating overlay.
 
-#### 🔗 HTTPS install link
+### 🔗 HTTPS install link
 
 Codex accepts pet install links with an HTTPS spritesheet URL. This repository's ready-to-share link is:
 
@@ -170,14 +235,12 @@ codex://pets/install?name=%E6%B0%B4%E8%B1%9A%E5%99%9C%E5%99%9C&description=Capyb
 
 Only `name`, `description`, `imageUrl`, and `spriteVersionNumber` are accepted. `imageUrl` must be an absolute HTTPS URL. `spriteVersionNumber=2` is the Codex 8 × 11 sprite protocol; it is not this project's release number.
 
-### ⚙️ Codex and Claude Code configuration
+## ⚙️ Codex and Claude Code configuration
 
-| Environment | Native Lulu overlay? | Recommended setup |
-| --- | --- | --- |
-| ChatGPT desktop app · Codex | **Yes** | Run `python3 scripts/install.py`, restart the app, then select Lulu in **Settings → Pets**. |
-| Codex CLI | **Yes, in supported terminals** | Install the same local pet package and select it with `/pets`. |
-| Codex IDE extension | **No** | Use the desktop app or Codex CLI for the pet UI. |
-| Claude Code | **No native Codex-pet renderer** | Use this repository for source, QA, and contributions; do not copy `pet/` into `~/.claude` and expect an overlay. |
+- 🟢 **ChatGPT desktop app · Codex — native overlay.** Run `python3 scripts/install.py`, restart the app, then select Lulu in **Settings → Pets**.
+- 🟠 **Codex CLI — native in supported terminals.** Install the same local package and select Lulu with `/pets` in iTerm2 3.6+, Kitty graphics, or Sixel-capable terminals.
+- ⚪ **Codex IDE extension — no pet surface.** Use the desktop app or Codex CLI when you want the floating companion.
+- 🔵 **Claude Code — project maintenance only.** It can work with the repository, source frames, and docs, but copying `pet/` into `~/.claude` does not create a desktop overlay.
 
 Claude Code can still maintain the project cleanly:
 
@@ -191,7 +254,7 @@ The checked-in [`CLAUDE.md`](CLAUDE.md) and [`AGENTS.md`](AGENTS.md) preserve Lu
 
 The bundled [`hatch-pet`](hatch-pet/) workflow is the Codex authoring and QA tool used to build this pet. It calls Codex image-generation capabilities and writes the Codex pet contract, so copying it into Claude Code does **not** add a pet renderer or guarantee that its image-generation steps are available. A true Claude Code desktop companion would need a separate renderer and a hook bridge; this repository does not pretend that native support exists.
 
-### 🧩 Optional: install the authoring skill in Codex
+## 🧩 Optional: install the authoring skill in Codex
 
 The repository includes the upgraded `hatch-pet` skill with smooth image-time idle packaging, expressive phase manifests, 9-state QA, and 16-direction validation.
 
@@ -202,7 +265,7 @@ rsync -a hatch-pet/ ~/.codex/skills/hatch-pet/
 
 Restart Codex or reload skills, then invoke `$hatch-pet` when creating or repairing a pet. This step is optional for using Lulu; the ready-to-install pet is already in [`pet/`](pet/).
 
-### ♿ Reduced motion
+## ♿ Reduced motion
 
 Official pets respect the operating system reduced-motion preference. This project's smooth idle uses the animated WebP image clock, which can continue even when JavaScript sprite timers are reduced. If continuous idle motion is not appropriate, replace the installed runtime with the static QA atlas:
 
@@ -212,7 +275,7 @@ cp assets/spritesheet-static.webp ~/.codex/pets/capybara-lulu/spritesheet.webp
 
 Restart the app afterward. The task states and 16 look directions remain available; only the expressive image-time idle wrapper is removed.
 
-### 🧪 Development and validation
+## 🧪 Development and validation
 
 Create an environment and rebuild the public galleries:
 
@@ -255,7 +318,7 @@ Acceptance targets:
 - rows 1–10 are render-identical across every runtime frame;
 - no eyebrows, tail, extra limbs, limb switching, gait reversal, or baseline pop appears.
 
-### 🗂️ Repository layout
+## 🗂️ Repository layout
 
 ```text
 capybara-lulu/
@@ -269,10 +332,10 @@ capybara-lulu/
 └── README.zh-CN.md         # 简体中文文档
 ```
 
-### 🤝 Contributing
+## 🤝 Contributing
 
 Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before changing art or timing. Visual changes must include regenerated GIFs and galleries plus deterministic validation. Security issues should follow [`SECURITY.md`](SECURITY.md).
 
-### 📜 License and names
+## 📜 License and names
 
 Code, documentation, and repository assets are provided under the [Apache License 2.0](LICENSE), subject to the rights described in [`NOTICE`](NOTICE). This is an independent project and is not affiliated with OpenAI or Anthropic. Codex, ChatGPT, Claude, and Claude Code remain the property of their respective owners.
