@@ -66,10 +66,52 @@
       ]
     },
     "running-right": {
-      "atlas_sequence": [0, 0, 0, 1, 1, 2, 2, 3, 3, 3, 4, 4, 5, 5, 6, 6, 6, 7, 7, 7]
+      "image_sequence": [
+        "state-phases/running-right/00.png",
+        "state-phases/running-right/01.png",
+        "state-phases/running-right/02.png",
+        "state-phases/running-right/03.png",
+        "state-phases/running-right/04.png",
+        "state-phases/running-right/05.png",
+        "state-phases/running-right/06.png",
+        "state-phases/running-right/07.png",
+        "state-phases/running-right/08.png",
+        "state-phases/running-right/09.png",
+        "state-phases/running-right/10.png",
+        "state-phases/running-right/11.png",
+        "state-phases/running-right/12.png",
+        "state-phases/running-right/13.png",
+        "state-phases/running-right/14.png",
+        "state-phases/running-right/15.png",
+        "state-phases/running-right/16.png",
+        "state-phases/running-right/17.png",
+        "state-phases/running-right/18.png",
+        "state-phases/running-right/19.png"
+      ]
     },
     "running-left": {
-      "atlas_sequence": [0, 0, 0, 1, 1, 2, 2, 3, 3, 3, 4, 4, 5, 5, 6, 6, 6, 7, 7, 7]
+      "image_sequence": [
+        "state-phases/running-left/00.png",
+        "state-phases/running-left/01.png",
+        "state-phases/running-left/02.png",
+        "state-phases/running-left/03.png",
+        "state-phases/running-left/04.png",
+        "state-phases/running-left/05.png",
+        "state-phases/running-left/06.png",
+        "state-phases/running-left/07.png",
+        "state-phases/running-left/08.png",
+        "state-phases/running-left/09.png",
+        "state-phases/running-left/10.png",
+        "state-phases/running-left/11.png",
+        "state-phases/running-left/12.png",
+        "state-phases/running-left/13.png",
+        "state-phases/running-left/14.png",
+        "state-phases/running-left/15.png",
+        "state-phases/running-left/16.png",
+        "state-phases/running-left/17.png",
+        "state-phases/running-left/18.png",
+        "state-phases/running-left/19.png"
+      ]
     },
     "waving": {
       "atlas_sequence": [0, 0, 1, 1, 2, 2, 3, 3, 0, 0, 1, 1, 2, 2, 3, 3, 0, 1, 2, 3]

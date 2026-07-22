@@ -83,6 +83,20 @@ Inspect a labeled contact sheet at normal pet size. For a prop interaction such 
 
 Keep the native static row as a six- or eight-cell compatibility fallback. Select a coherent subset of the approved high-phase poses and replace only that native row with `replace_v2_atlas_row.py`; re-run all static-atlas validation afterward.
 
+For a directional rightward loop that has already passed anatomy, direction, and continuity review, derive the leftward high-phase loop only when Lulu's markings, lighting, and props are safe to mirror:
+
+```bash
+"$PYTHON" "$SKILL_DIR/scripts/mirror_motion_phase_directory.py" \
+  --source-dir "$RUN_DIR/phases/running-right" \
+  --output-dir "$RUN_DIR/phases/running-left" \
+  --expected-count 20 \
+  --confirm-appropriate-mirror \
+  --decision-note "symmetric pet with no handed prop; framewise mirroring preserves identity" \
+  --json-out "$RUN_DIR/qa/running-left-mirror.json"
+```
+
+This transformation mirrors every `192x208` phase independently and preserves phase order. Never mirror the complete strip as one image, because that reverses the animation timeline.
+
 ## Package and validate
 
 ```bash

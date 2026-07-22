@@ -367,6 +367,20 @@ esac
 
 That script mirrors each generated frame slot in place so the leftward row preserves the rightward row's temporal order. Do not replace it with a whole-strip mirror that reverses animation timing.
 
+For an approved synchronized high-phase rightward loop, mirror the populated `192x208` phase directory frame by frame instead. This preserves all 16-24 phase indices exactly and avoids reversing the gait clock:
+
+```bash
+"$PYTHON" "$SKILL_DIR/scripts/mirror_motion_phase_directory.py" \
+  --source-dir /absolute/path/to/phases/running-right \
+  --output-dir /absolute/path/to/phases/running-left \
+  --expected-count 20 \
+  --confirm-appropriate-mirror \
+  --decision-note "<why framewise mirroring preserves this pet's identity>" \
+  --json-out /absolute/path/to/qa/running-left-mirror.json
+```
+
+Use this only after the complete rightward phase loop passes visual anatomy and continuity review. The tool preserves phase order and mirrors each cell independently; it does not approve an asymmetric prop, marking, lighting setup, or handed action for mirroring.
+
 6. When all nine incrementally validated standard row jobs are complete, build and review the intermediate rows `0-8`:
 
 ```bash
@@ -886,6 +900,7 @@ If frame inspection or final visual QA fails, read `qa/review.json`, regenerate 
 - Treat only the base job as eligible for prompt-only generation; every row job must attach its listed grounding images.
 - Generate `running-right` before deciding whether `running-left` can be mirrored.
 - When `running-left` is mirrored, preserve frame order and timing semantics; derive it through the deterministic script instead of mirroring an entire strip wholesale.
+- When synchronized high-phase `running-left` is mirrored, use `mirror_motion_phase_directory.py` on the approved rightward phase directory and keep the same global phase indices and durations.
 - Do not derive or reuse `waiting`, `running`, `failed`, `review`, `jumping`, or `waving` from another state; each has distinct app semantics and must be generated as its own row.
 - Generate look row 9 directly from the approved cardinal strip, then generate row 10 only after row 9 clears deterministic registration and post-registration edge QA and has no semantic or continuity hard failure. Reviewed warnings do not block row 10. Both rows attach the cardinal strip, and row 10 must also attach completed row 9.
 - Final look rows must each originate from one coherent 8-frame row generation. Individually generated repair cells may never be copied into the final atlas.

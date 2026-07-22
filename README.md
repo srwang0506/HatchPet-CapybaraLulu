@@ -27,6 +27,16 @@ Capybara Lulu is a custom pet pack for the ChatGPT desktop app's Codex experienc
 
 The shipped `pet/spritesheet.webp` is an animated 8 × 11 atlas with 20 synchronized image-time phases per native state. Its 1.60-second global loop keeps motion fluid without making Lulu feel hurried. Fifteen named visual motions are distributed across the nine real Codex triggers; the static atlas remains available for QA, editing, and reduced-motion fallback.
 
+<p align="center">
+  <img src="assets/gifs/idle.gif" alt="Lulu breathing, blinking, and waving" width="132">
+  <img src="assets/gifs/running-left.gif" alt="Lulu running toward screen-left" width="132">
+  <img src="assets/gifs/running-right.gif" alt="Lulu running toward screen-right" width="132">
+  <img src="assets/gifs/running.gif" alt="Lulu working on her computer" width="132">
+  <img src="assets/gifs/look-directions.gif" alt="Lulu following the pointer" width="132">
+</p>
+
+<p align="center"><sub>Idle companion · left and right travel · Codex work · pointer attention</sub></p>
+
 | Lulu's behavior | What ships |
 | :--- | :--- |
 | 🌿 **Expressive idle** | 20 image-time phases: rest, breath, blink, mouth open/close, a single-paw wave, and a soft neutral return. |
@@ -51,8 +61,8 @@ Every live preview uses the shipped 80 ms phase cadence. The cards below show th
 <p>
   <img src="assets/gifs/running-right.gif" alt="Lulu running right" width="124" align="left">
   <strong>➡️ Run right</strong><br>
-  <sub><code>running-right</code> · 20 phases · 1.60 s</sub><br><br>
-  Appears while the floating pet is dragged toward screen-right.<br>
+  <sub><code>running-right</code> · 20 unique phases · 1.60 s</sub><br><br>
+  Appears while the floating pet is dragged toward screen-right. A complete two-step cycle alternates both legs and opposing arms without tail-like rear shapes.<br>
   <a href="assets/state-phases/running-right/">Open all 20 runtime phases →</a>
 </p>
 <br clear="left">
@@ -60,8 +70,8 @@ Every live preview uses the shipped 80 ms phase cadence. The cards below show th
 <p>
   <img src="assets/gifs/running-left.gif" alt="Lulu running left" width="124" align="left">
   <strong>⬅️ Run left</strong><br>
-  <sub><code>running-left</code> · 20 phases · 1.60 s</sub><br><br>
-  Appears while the floating pet is dragged toward screen-left.<br>
+  <sub><code>running-left</code> · 20 unique phases · 1.60 s</sub><br><br>
+  Appears while the floating pet is dragged toward screen-left. It is a framewise mirror of the approved rightward gait, preserving phase order and timing.<br>
   <a href="assets/state-phases/running-left/">Open all 20 runtime phases →</a>
 </p>
 <br clear="left">
@@ -128,6 +138,21 @@ Every live preview uses the shipped 80 ms phase cadence. The cards below show th
   <a href="assets/frames/look-directions/">Open all 16 direction frames →</a>
 </p>
 <br clear="left">
+
+### 🏃 Directional gait study
+
+Both travel directions use a true 20-pose, two-step loop. The same image-time clock drives a framewise mirrored pair, so cadence, body registration, and footfall order stay consistent in either direction.
+
+<p align="center">
+  <img src="assets/directional-gait.png" alt="Capybara Lulu 20-phase right and left running gait study" width="100%">
+</p>
+
+<p align="center">
+  <img src="assets/gifs/running-left.gif" alt="Capybara Lulu's final leftward running loop" width="190">
+  <img src="assets/gifs/running-right.gif" alt="Capybara Lulu's final rightward running loop" width="190">
+</p>
+
+<p align="center"><sub>Same 20-phase clock · exact framewise mirror · opposite screen direction</sub></p>
 
 > [!NOTE]
 > When several chats are active, the official priority is **Needs input → Blocked → Ready → Running**. Selecting Lulu returns you to ChatGPT; selecting an item in the activity tray opens that chat. See the official [Pets documentation](https://learn.chatgpt.com/docs/pets?surface=app).
@@ -322,6 +347,20 @@ python hatch-pet/scripts/measure_motion_phase_continuity.py \
   --expected-count 20 \
   --chroma-key '#FF00FF'
 
+python hatch-pet/scripts/measure_motion_phase_continuity.py \
+  assets/state-phases/running-right \
+  --expected-count 20 \
+  --max-area-ratio 1.26 \
+  --max-centroid-shift 18 \
+  --chroma-key '#FF00FF'
+
+python hatch-pet/scripts/measure_motion_phase_continuity.py \
+  assets/state-phases/running-left \
+  --expected-count 20 \
+  --max-area-ratio 1.26 \
+  --max-centroid-shift 18 \
+  --chroma-key '#FF00FF'
+
 python -m unittest discover -s hatch-pet/tests -v
 ```
 
@@ -333,6 +372,7 @@ Acceptance targets:
 - all renderer-selectable columns in all nine native rows remain phase-synchronized;
 - both look rows remain render-identical to the static QA atlas;
 - all 15 named visual motions remain mapped to real native triggers;
+- both directional runs contain 20 distinct poses, and the left loop is the exact framewise mirror of the approved right loop with phase order preserved;
 - no eyebrows, tail, detached or extra limbs, limb switching, gait reversal, or baseline pop appears.
 
 ## 🗂️ Repository layout

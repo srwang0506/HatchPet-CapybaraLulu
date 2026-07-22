@@ -158,6 +158,16 @@ def reset_directory(path: Path) -> None:
     path.mkdir(parents=True)
 
 
+def clear_transparent_rgb(frame: Image.Image) -> Image.Image:
+    """Zero hidden RGB so transparent source PNGs remain clean in every viewer."""
+    rgba = frame.convert("RGBA")
+    data = bytearray(rgba.tobytes())
+    for index in range(0, len(data), 4):
+        if data[index + 3] == 0:
+            data[index : index + 3] = b"\x00\x00\x00"
+    return Image.frombytes("RGBA", rgba.size, bytes(data))
+
+
 def save_frames(
     name: str,
     frames: list[Image.Image],
@@ -171,7 +181,7 @@ def save_frames(
     for index, frame in enumerate(frames):
         stem = labels[index] if labels else f"{index:02d}"
         output = output_dir / f"{stem}.png"
-        frame.save(output, optimize=True)
+        clear_transparent_rgb(frame).save(output, optimize=True)
         outputs.append(output.relative_to(ROOT).as_posix())
     return outputs
 
@@ -538,6 +548,139 @@ def build_idle_timeline(frames: list[Image.Image], durations: list[int]) -> None
     image.save(ASSETS / "idle-frames.png", optimize=True)
 
 
+def build_directional_gait_study(
+    right_frames: list[Image.Image],
+    left_frames: list[Image.Image],
+    durations: list[int],
+) -> None:
+    if len(right_frames) != 20 or len(left_frames) != 20 or len(durations) != 20:
+        raise ValueError("directional gait study requires two synchronized 20-phase loops")
+
+    width = 1920
+    height = 760
+    margin = 72
+    label_width = 260
+    frames_x = margin + label_width
+    frames_width = width - margin - frames_x
+    slot_width = frames_width / 20
+    row_tops = [265, 495]
+    image = Image.new("RGB", (width, height), WHITE)
+    draw = ImageDraw.Draw(image)
+
+    draw.rectangle((margin, 45, margin + 10, 137), fill=ORANGE)
+    draw.rectangle((margin + 16, 45, margin + 26, 75), fill=GREEN)
+    draw.text(
+        (margin + 48, 44),
+        "CAPYBARA LULU / MOTION STUDY Nº 02",
+        fill=GREEN,
+        font=font(16, bold=True, style="mono"),
+    )
+    draw.text(
+        (margin + 44, 70),
+        "DIRECTIONAL GAIT",
+        fill=INK,
+        font=font(72, style="display"),
+    )
+    draw.text(
+        (margin + 47, 151),
+        "CONTACT  /  LOAD  /  PASS  /  FLIGHT  /  REACH  /  MIRRORED RETURN",
+        fill=MUTED,
+        font=font(14, style="mono"),
+    )
+    draw.text(
+        (width - margin, 49),
+        "20 × 2",
+        fill=ORANGE,
+        font=font(60, bold=True),
+        anchor="ra",
+    )
+    draw.text(
+        (width - margin, 125),
+        f"{durations[0]:03d} MS / PHASE  ·  {sum(durations) / 1000:.2f} S LOOP",
+        fill=INK,
+        font=font(14, bold=True, style="mono"),
+        anchor="ra",
+    )
+    draw.line((margin, 195, width - margin, 195), fill=ORANGE, width=5)
+
+    chapters = ("CONTACT A", "FLIGHT A", "CONTACT B", "FLIGHT B")
+    for row_top in row_tops:
+        for chapter_index, chapter in enumerate(chapters):
+            start = frames_x + chapter_index * 5 * slot_width
+            end = start + 5 * slot_width - 10
+            draw.text(
+                (start, row_top - 43),
+                chapter,
+                fill=GREEN,
+                font=font(11, bold=True, style="mono"),
+            )
+            draw.line((start, row_top - 25, end, row_top - 25), fill=GREEN, width=2)
+
+    rows = (
+        ("RUN RIGHT", "SCREEN-RIGHT", right_frames, 1),
+        ("RUN LEFT", "SCREEN-LEFT", left_frames, -1),
+    )
+    for row_index, (title, direction, frames, arrow_sign) in enumerate(rows):
+        row_top = row_tops[row_index]
+        draw.text(
+            (margin, row_top + 17),
+            title,
+            fill=INK,
+            font=font(34, style="display"),
+        )
+        draw.text(
+            (margin, row_top + 58),
+            direction,
+            fill=MUTED,
+            font=font(12, bold=True, style="mono"),
+        )
+
+        arrow_y = row_top + 104
+        if arrow_sign > 0:
+            draw.line((margin, arrow_y, margin + 160, arrow_y), fill=ORANGE, width=5)
+            draw.polygon(
+                [(margin + 160, arrow_y), (margin + 142, arrow_y - 11), (margin + 142, arrow_y + 11)],
+                fill=ORANGE,
+            )
+        else:
+            draw.line((margin, arrow_y, margin + 160, arrow_y), fill=ORANGE, width=5)
+            draw.polygon(
+                [(margin, arrow_y), (margin + 18, arrow_y - 11), (margin + 18, arrow_y + 11)],
+                fill=ORANGE,
+            )
+
+        draw.line((frames_x, row_top + 140, width - margin, row_top + 140), fill=RULE, width=2)
+        for index, frame in enumerate(frames):
+            slot_left = frames_x + index * slot_width
+            center_x = slot_left + slot_width / 2
+            card = frame_card(frame, (70, 126)).convert("RGB")
+            image.paste(card, (int(center_x - 35), row_top - 2))
+            draw.line((center_x, row_top + 135, center_x, row_top + 147), fill=ORANGE, width=2)
+            draw.text(
+                (center_x, row_top + 155),
+                f"{index:02d}",
+                fill=INK,
+                font=font(10, style="mono"),
+                anchor="ma",
+            )
+
+    draw.line((margin, 704, width - margin, 704), fill=ORANGE, width=3)
+    draw.text(
+        (margin, 724),
+        "FRAMEWISE MIRROR  /  SAME CLOCK  /  OPPOSITE TRAVEL DIRECTION",
+        fill=GREEN,
+        font=font(12, bold=True, style="mono"),
+    )
+    draw.text(
+        (width - margin, 724),
+        "EXACTLY TWO ARMS  ·  TWO LEGS  ·  NO TAIL",
+        fill=MUTED,
+        font=font(12, style="mono"),
+        anchor="ra",
+    )
+    image.save(ASSETS / "directional-gait.png", optimize=True)
+
+
 def build_white_atlas_gallery() -> None:
     label_height = 22
     with Image.open(STATIC_ATLAS) as opened:
@@ -683,6 +826,11 @@ def main() -> None:
     )
     build_all_frames_gallery(groups)
     build_idle_timeline(idle_frames, runtime_durations)
+    build_directional_gait_study(
+        runtime_states["running-right"],
+        runtime_states["running-left"],
+        runtime_durations,
+    )
     build_white_atlas_gallery()
     build_white_look_gallery(look_frames)
     print(f"Wrote {sum(len(frames) for frames in groups.values())} frames and {len(groups)} GIFs under {ASSETS}")
